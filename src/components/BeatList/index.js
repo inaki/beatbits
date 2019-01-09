@@ -5,6 +5,7 @@ import BeatCard from '../BeatCard';
 import DetailsDialog from '../DetailsDialog';
 import Grid from '@material-ui/core/Grid';
 
+
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 class BeatList extends Component {
@@ -29,7 +30,8 @@ class BeatList extends Component {
             return (
                 <Grid item
                     xs={12}
-                    key={beat.id}>
+                    key={beat.id}
+                    align="left">
                     <BeatCard
                         handleSelect={() => {
                             this.props.selectBeat(beat);

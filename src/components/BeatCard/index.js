@@ -10,7 +10,7 @@ import BeatPattern from '../BeatPattern';
 
 const styles = {
   card: {
-    maxWidth: 500,
+    maxWidth: 600,
     margin: 10
   },
   bullet: {
@@ -19,32 +19,38 @@ const styles = {
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontSize: 20,
+    color: '#666'
   },
-  pos: {
-    marginBottom: 12,
+  bpm: {
+    color: '#666'
   },
+  description: {
+    color: '#666'
+  }
 };
 
 function BeatCard(props) {
-  const { classes, name, bpm, description, rythm, handleSelect } = props;
+  const { classes, title, bpm, description, rythm, handleSelect } = props;
 
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {name}
+        <Typography component="h1" className={classes.title} color="textSecondary" gutterBottom>
+          {title}
         </Typography>
-        <Typography component="p">
-          {description}
-        </Typography>
-        <Typography component="p">
+        <Typography className={classes.bpm} component="p">
           bpm : {bpm}
         </Typography>
+        <br/>
         <BeatPattern rythm={rythm}/>
+        <br/>
+        <Typography className={classes.description} component="p">
+          {description}
+        </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={handleSelect}>Learn More</Button>
+        <Button size="small" onClick={handleSelect}>Beat Details</Button>
       </CardActions>
     </Card>
   );

@@ -1,15 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import * as serviceWorker from './serviceWorker';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import orange from '@material-ui/core/colors/orange';
 
 import reducers from './reducers';
 
+const beatbitsTheme = createMuiTheme({
+    palette: {
+        secondary: {
+        main: orange[500],
+        },
+    },
+    typography: { 
+        useNextVariants: true,
+        fontFamily: ['"Helvetica"',].join(',')
+    },
+});
+
+
 ReactDOM.render(
     <Provider store={createStore(reducers)}>
-        <App />
+        <MuiThemeProvider theme={beatbitsTheme}>
+            <App />
+        </MuiThemeProvider>
     </Provider>,
 document.getElementById('root'));
 

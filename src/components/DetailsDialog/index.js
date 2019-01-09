@@ -7,12 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
 import BeatPattern from '../BeatPattern';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
 const styles = {
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
+  dialog: {
+ 
+  }
 };
 
 class DetailsDialog extends React.Component {
@@ -28,7 +26,10 @@ class DetailsDialog extends React.Component {
     const { classes, onClose, selectedValue, selectedBeat, ...other } = this.props;
     console.log(selectedBeat)
     return (
-      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
+      <Dialog
+        maxWidth={'md'}
+        fullWidth={true}
+        className={classes.dialog} onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
         <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
         <div>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
