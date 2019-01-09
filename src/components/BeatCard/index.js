@@ -27,7 +27,7 @@ const styles = {
 };
 
 function BeatCard(props) {
-  const { classes, name, bpm, description, rythm } = props;
+  const { classes, name, bpm, description, rythm, handleSelect } = props;
 
   return (
     <Card className={classes.card}>
@@ -44,7 +44,7 @@ function BeatCard(props) {
         <BeatPattern rythm={rythm}/>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={handleSelect}>Learn More</Button>
       </CardActions>
     </Card>
   );

@@ -25,7 +25,6 @@ class App extends Component {
         const { beatlist } = this.state 
         return (
             <CssBaseline>
-                <div>hola mondo!</div>
                 <BeatList beatlist={beatlist}/>
             </CssBaseline>
         )
