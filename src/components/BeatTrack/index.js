@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const StepOn = styled.span`
@@ -11,7 +11,11 @@ const StepOn = styled.span`
     padding-top: 6px;
     text-align: center;
     box-sizing: border-box;
-    background: ${ props => props.stepNumber < 4 ? "#C62828" : props.stepNumber < 9 ? "#E53935" : props.stepNumber < 13 ? "#EF5350" : "#EF9A9A"
+    background: ${ props => props.stepNumber < 4 
+        ? "#C62828" 
+        : props.stepNumber < 9 
+            ? "#E53935" 
+            : props.stepNumber < 13 ? "#EF5350" : "#EF9A9A"
         };
     color: white;
     text-overflow:ellipsis; 

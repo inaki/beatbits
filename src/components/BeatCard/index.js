@@ -45,9 +45,6 @@ function BeatCard(props) {
         <br/>
         <BeatPattern rythm={rythm}/>
         <br/>
-        <Typography className={classes.description} component="p">
-          {description}
-        </Typography>
       </CardContent>
       <CardActions>
         <Button size="small" onClick={handleSelect}>Beat Details</Button>

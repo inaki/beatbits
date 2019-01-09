@@ -4,12 +4,16 @@ import { withStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
-import blue from '@material-ui/core/colors/blue';
-import BeatPattern from '../BeatPattern';
+import BeatPatternExpanded from '../BeatPatternExpanded';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
-  dialog: {
- 
+  dialog: {},
+  title: {
+    marginLeft: '-23px'
+  },
+  description: {
+    marginBottom: 20
   }
 };
 
@@ -30,19 +34,28 @@ class DetailsDialog extends React.Component {
         maxWidth={'md'}
         fullWidth={true}
         className={classes.dialog} onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-        <div>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {selectedBeat.title}
-        </Typography>
-        <Typography component="p">
-          {selectedBeat.description}
-        </Typography>
-        <Typography component="p">
-          bpm : {selectedBeat.bpm}
-        </Typography>
-        <BeatPattern rythm={selectedBeat.rythm}/>
-        </div>
+        <Grid container>
+          <Grid item xs={2}/>
+          <Grid item xs={7}>
+            <DialogTitle className={classes.title} id="simple-dialog-title">{selectedBeat.title}</DialogTitle>
+          </Grid>
+          <Grid item xs={3}/>
+        </Grid>
+      
+        <BeatPatternExpanded selectedBeat={selectedBeat}/>
+
+        <Grid container>
+          <Grid item xs={2}/>
+          <Grid item xs={7}>
+          <Typography className={classes.description} component="p">
+            <h3>description</h3>
+            {selectedBeat.description}
+          </Typography>
+          </Grid>
+          <Grid item xs={3}/>
+        </Grid>
+     
+        
       </Dialog>
     );
   }
