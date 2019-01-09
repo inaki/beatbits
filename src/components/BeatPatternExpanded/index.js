@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import BeatTrack from '../BeatTrack';
+import BeatTrackExpanded from '../BeatTrackExpanded';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const BeatTitle = styled.span`
     color: #666;
-    padding-top: 5px;
+    padding-top: 10px;
+    display: inline-block;
+    min-height: 30px;
     text-align: left;
     font-size: 0.8rem;
     font-family: helvetica;
@@ -26,8 +28,12 @@ const BeatDetailsWrapper = styled.div`
     padding: 10px;
 `;
 
+const BeatTrackExpandedsWrapper = styled.div`
+    min-width: 100%;
+`;
+
 const BeatRow = styled.div`
-    width: 100%;
+    min-width: 100%;
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
@@ -53,36 +59,38 @@ class BeatPatternExpanded extends Component {
                             <BeatTitle>Kick: </BeatTitle>
                         </BeatTitleWrapper>
                     </Grid>
-                    <Grid item xs={7}>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['accent']} /> 
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['cymball']} />
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['open hat']} /> 
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['closed hat']} /> 
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['cowbell']} /> 
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['clap']} /> 
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['tom']} /> 
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['snare']} /> 
-                        </BeatRow>
-                        <BeatRow>
-                            <BeatTrack steps={rythm['kick']} /> 
-                        </BeatRow>
+                    <Grid item xs={8}>
+                        <BeatTrackExpandedsWrapper>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['accent']} /> 
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['cymball']} />
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['open hat']} /> 
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['closed hat']} /> 
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['cowbell']} /> 
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['clap']} /> 
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['tom']} /> 
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['snare']} /> 
+                            </BeatRow>
+                            <BeatRow>
+                                <BeatTrackExpanded steps={rythm['kick']} /> 
+                            </BeatRow>
+                        </BeatTrackExpandedsWrapper>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                         <BeatDetailsWrapper>
                             <Typography component="p">
                                 <span style={{color: 'gray'}}>genre : </span> 

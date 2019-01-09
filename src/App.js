@@ -10,10 +10,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     root: {
-        fontFamily: 'Helvetica'
+        fontFamily: 'Roboto'
     },
     card: {
-      minWidth: 390,
+      minWidth: 565,
       margin: 10
     }
   };
