@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import SearchBeats from './components/SearchBeats';
 import { withStyles } from '@material-ui/core/styles';
+import Header from './components/Header';
 // import { selectBeat } from './actions';
 
 const styles = {
@@ -16,7 +17,7 @@ const styles = {
       minWidth: 565,
       margin: 10
     }
-  };
+};
 
 class App extends Component {
     constructor(props) {
@@ -27,19 +28,12 @@ class App extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     axios.get('http://localhost:3004/beatcollection')
-    //         .then(res => {
-    //             this.setState({beatlist: res.data['reggaeton']});
-    //         });
-        
-    // }
-
     render() {
         const { classes } = this.props;
         const { beatlist } = this.state 
         return (
             <CssBaseline>
+                <Header />
                 <Grid container direction="column" align="center">
                     <Grid item xs={12}>
                         <Card className={classes.card}>

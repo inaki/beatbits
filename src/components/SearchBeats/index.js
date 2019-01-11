@@ -4,13 +4,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { searchBeat } from '../../actions'
+import { searchBeatSelect, searchBeatInput } from '../../actions'
+import { genres } from '../../utils/variables';
 
 const styles = () => ({
-  textField: {
-    // marginLeft: 160,
-    // marginRight:16,
-  },
   dense: {
     marginTop: 16,
   },
@@ -18,43 +15,19 @@ const styles = () => ({
     // width: 400,
   },
   textField: {
-      padding: 20,
+      padding: '0 20px 0 0',
       textAlign: 'left'
+  },
+  menuItem: {
+    //   height: 25
   }
 });
-
-const genres = [
-    {
-        value: 'All'
-    },
-    {
-        value: 'Techno'
-    },
-    {
-        value: 'House'
-    },
-    {
-        value: 'Deep House'
-    },
-    {
-        value: 'Reggaeton'
-    },
-    {
-        value: 'Hip Hop'
-    },
-    {
-        value: 'Electronica'
-    },
-    {
-        value: 'Pop'
-    }
-];
-
 
 class SearchBeats extends Component {
 
     state = {
-        genre: 'All'
+        genre: 'All',
+        title: ''
     }
 
     handleOnSubmit = (e) => {
@@ -63,8 +36,14 @@ class SearchBeats extends Component {
 
     handleGenres = (e) => {
         e.preventDefault();
-        this.setState({genre: e.target.value});
-        this.props.searchBeat(e.target.value);
+        if(e.target.name === 'select') {
+            this.setState({genre: e.target.value, title: ''});
+            this.props.searchBeatSelect(e.target.value);
+        } else if (e.target.name === 'input') {
+            this.setState({title: e.target.value});
+            this.props.searchBeatInput(e.target.value);
+        }
+        
     }
 
     render() {
@@ -74,9 +53,11 @@ class SearchBeats extends Component {
                 <Grid container>
                     <Grid item xs={5}>
                         <TextField
+                            label='select genre'
                             fullWidth={true}
                             id="outlined-select-genre"
                             select
+                            name='select'
                             className={classes.textField}
                             value={this.state.genre}
                             onChange={this.handleGenres}
@@ -89,7 +70,7 @@ class SearchBeats extends Component {
                             variant="outlined"
                             >
                             {genres.map(option => (
-                                <MenuItem key={option.value} value={option.value}>
+                                <MenuItem className={classes.menuItem} key={option.value} value={option.value}>
                                 {option.value}
                                 </MenuItem>
                             ))}
@@ -97,14 +78,19 @@ class SearchBeats extends Component {
                     </Grid>
                     <Grid item xs={7}>
                         <TextField
+                            label='title search'
+                            name='input'
                             placeholder='enter title of the beat'
                             fullWidth={true}
                             id="outlined-name"
                             className={classes.textField}
-                            value={this.state.searchTerm}
+                            value={this.state.title}
                             onChange={this.handleGenres}
                             margin="normal"
                             variant="outlined"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
                     </Grid>
                 </Grid>
@@ -114,5 +100,6 @@ class SearchBeats extends Component {
 }
 
 export default connect(null, {
-    searchBeat
+    searchBeatSelect,
+    searchBeatInput
 })(withStyles(styles)(SearchBeats));

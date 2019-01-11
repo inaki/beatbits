@@ -31,7 +31,7 @@ const styles = {
 };
 
 function BeatCard(props) {
-  const { classes, title, bpm, description, rythm, handleSelect } = props;
+  const { classes, title, bpm, rythm, handleSelect } = props;
 
   return (
     <Card className={classes.card}>

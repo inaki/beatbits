@@ -1,49 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectBeat } from '../../actions';
+import { selectBeat, fetchBeats } from '../../actions';
 import BeatCard from '../BeatCard';
 import DetailsDialog from '../DetailsDialog';
 import Grid from '@material-ui/core/Grid';
-
-
-const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 class BeatList extends Component {
 
     state = {
         open: false,
-        selectedValue: emails[1],
-      };
-      
-      handleClickOpen = () => {
-        this.setState({
-          open: true,
-        });
+        beats: []
       };
     
-      handleClose = value => {
+    componentDidMount() {
+        this.props.fetchBeats();
+    }
+      
+    handleClickOpen = () => {
+        this.setState({open: true});
+    };
+
+    handleClose = value => {
         this.setState({ selectedValue: value, open: false });
-      };
+    };
     
     renderBeatList = (beats) => {
-        return beats.map( beat => {
-            return (
-                <Grid item
-                    xs={12}
-                    key={beat.id}
-                    align="left">
-                    <BeatCard
-                        handleSelect={() => {
-                            this.props.selectBeat(beat);
-                            this.handleClickOpen();
-                        }}
-                        {...beat}/>
-                </Grid>
-                );
+        return beats
+            .filter( beat => {
+                if (this.props.beatsSearch !== null) {
+                    if (this.props.beatsSearch.type === 'select') {
+                        if (this.props.beatsSearch.genre === 'All') {
+                            return true;
+                        } else {
+                            return this.props.beatsSearch.genre.toLowerCase() === beat.genre.toLowerCase();
+                        }
+                    } else if (this.props.beatsSearch.type === 'input') {
+                        return beat.title.toLowerCase().includes(this.props.beatsSearch.title);
+                    }
+                }
+                return true
+            })
+            .map( beat => {
+                return (
+                    <Grid item
+                        xs={12}
+                        key={beat.id}
+                        align="left">
+                        <BeatCard
+                            handleSelect={() => {
+                                this.props.selectBeat(beat);
+                                this.handleClickOpen();
+                            }}
+                            {...beat}/>
+                    </Grid>
+                    );
             });   
     }
     render() {
-        const { beats, selectedBeat } = this.props;
+        const { selectedBeat, beats } = this.props;
         return (
             <div>
                 { selectedBeat && 
@@ -65,10 +79,12 @@ class BeatList extends Component {
 const mapStateToProps = (state) => {
     return {
         beats: state.beats,
-        selectedBeat: state.selectedBeat
+        selectedBeat: state.selectedBeat,
+        beatsSearch: state.beatsSearch
     };
 }
 
 export default connect(mapStateToProps, {
-    selectBeat
+    selectBeat,
+    fetchBeats
 })(BeatList);

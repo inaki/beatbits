@@ -1,0 +1,66 @@
+{
+  "beatsDatabase": [
+      {"id": 1,"author": "iñaki", "title": "Mi Gente", "bpm": "115", "rythm": {
+          "accent": [1, 0, 1, 0, 1, 0, 0, 0 ,1, 1, 0, 0, 1, 0, 0, 0],
+          "cymball": [0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0],
+          "open hat": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "closed hat": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "cowbell": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "clap": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "tom": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "snare": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "kick": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0]
+      }, "genre": "reggaeton", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol"},
+      {"id": 2,"author": "doris", "title": "El Ganador", "bpm": "118", "rythm": {
+          "accent": [1, 0, 1, 0, 1, 0, 0, 0 ,1, 1, 0, 0, 1, 0, 0, 0],
+          "cymball": [0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0],
+          "open hat": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "closed hat": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "cowbell": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "clap": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "tom": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "snare": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "kick": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0]
+      }, "genre": "reggaeton", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol"},
+      {"id": 3,"author": "iñaki", "title": "Born Sleepy", "bpm": "128", "rythm": {
+          "accent": [1, 0, 1, 0, 1, 0, 0, 0 ,1, 1, 0, 0, 1, 0, 0, 0],
+          "cymball": [0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0],
+          "open hat": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "closed hat": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "cowbell": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "clap": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "tom": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "snare": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "kick": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0]
+      }, "genre": "techno", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol"},
+      {"id": 4,"author": "iñaki", "title": "Sexual Healing", "bpm": "122", "rythm": {
+          "accent": [1, 0, 1, 0, 1, 0, 0, 0 ,1, 1, 0, 0, 1, 0, 0, 0],
+          "cymball": [0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0],
+          "open hat": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "closed hat": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "cowbell": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "clap": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "tom": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "snare": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "kick": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0]
+      }, "genre": "pop", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol"},
+      {"id": 5,"author": "diego", "title": "Afrika", "bpm": "122", "rythm": {
+          "accent": [1, 0, 1, 0, 1, 0, 0, 0 ,1, 1, 0, 0, 1, 0, 0, 0],
+          "cymball": [0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0],
+          "open hat": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "closed hat": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "cowbell": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "clap": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "tom": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "snare": [1, 0, 0, 0, 1, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0],
+          "kick": [0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 0, 0, 1, 0, 0, 0]
+      }, "genre": "pop", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol"}
+  ],
+  "users": [
+      {"id": "u1", "name": "iñaki"},
+      {"id": "u2", "name": "diego"},
+      {"id": "u3", "name": "lolita"},
+      {"id": "u4", "name": "doris"},
+      {"id": "u5", "name": "felix"}
+  ]
+}

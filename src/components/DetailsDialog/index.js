@@ -28,7 +28,6 @@ class DetailsDialog extends React.Component {
 
   render() {
     const { classes, onClose, selectedValue, selectedBeat, ...other } = this.props;
-    console.log(selectedBeat)
     return (
       <Dialog
         maxWidth={'md'}
@@ -48,7 +47,7 @@ class DetailsDialog extends React.Component {
           <Grid item xs={2}/>
           <Grid item xs={7}>
           <Typography className={classes.description} component="p">
-            <h3>description</h3>
+            <span style={{display: 'block', color: 'black', fontWeight: 'bold', fontSize: 18}}>description</span>
             {selectedBeat.description}
           </Typography>
           </Grid>
