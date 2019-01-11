@@ -36,3 +36,10 @@ export const searchBeatInput = (title) => {
         payload: title
     }
 }
+
+export const patternInput = (beatData) => {
+    return {
+        type: 'BEAT_PATTERN_DATA_INPUT',
+        payload: beatData
+    }
+}

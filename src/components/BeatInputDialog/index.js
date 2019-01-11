@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { genres } from '../../utils/variables';
 import BeatPatternInput from './BeatPatternInput';
+import { connect } from 'react-redux';
+import { patternInput } from '../../actions'
 
 const styles = {
   dialog: {},
@@ -17,6 +21,9 @@ const styles = {
   },
   description: {
     marginBottom: 20
+  },
+  textField: {
+      padding: '0 20px 0 0'
   }
 };
 
@@ -38,89 +45,132 @@ class DetailsDialog extends React.Component {
         this.props.onClose(value);
     };
 
-    handleInputs = () => {}
+    handleInputs = (e) => {
+        switch(e.target.name) {
+            case 'title': 
+                this.setState({title: e.target.value});
+                break;
+            case 'description': 
+                this.setState({description: e.target.value});
+                break;
+            case 'bpm': 
+                this.setState({bpm: e.target.value});
+                break;
+            case 'genre': 
+                this.setState({genre: e.target.value});
+                break;
+            default:
+                return;
+        }
+    }
 
     render() {
-        const { classes, onClose, ...other } = this.props;
+        const { classes, onClose, patternInput, ...other } = this.props;
         return (
         <Dialog
             maxWidth={'md'}
             fullWidth={true}
             className={classes.dialog} onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
             
-                <DialogTitle className={classes.title} id="simple-dialog-title">title</DialogTitle>
+            <DialogTitle className={classes.title} id="simple-dialog-title">title</DialogTitle>
             
+            <DialogContent>
 
-            <Grid container>
-                <Grid item xs={5}>
-                    <TextField
-                        label='title'
-                        name='title'
-                        placeholder='enter title of the beat'
-                        fullWidth={true}
-                        id="outlined-name"
-                        className={classes.textField}
-                        value={this.state.title}
-                        onChange={this.handleInputs}
-                        margin="normal"
-                        variant="outlined"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                <Grid container>
+                    <Grid item xs={5}>
+                        <TextField
+                            label='title'
+                            name='title'
+                            placeholder='enter title of the beat'
+                            fullWidth={true}
+                            id="outlined-name"
+                            className={classes.textField}
+                            value={this.state.title}
+                            onChange={this.handleInputs}
+                            margin="normal"
+                            variant="outlined"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={2}>
+                        <TextField
+                            label='bpm'
+                            name='bpm'
+                            placeholder='enter bpm'
+                            fullWidth={true}
+                            id="outlined-name"
+                            className={classes.textField}
+                            value={this.state.bpm}
+                            onChange={this.handleInputs}
+                            margin="normal"
+                            variant="outlined"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={5}>
+                        <TextField
+                            label='select genre'
+                            fullWidth={true}
+                            id="outlined-select-genre"
+                            select
+                            name='genre'
+                            className={classes.textField}
+                            value={this.state.genre}
+                            onChange={this.handleInputs}
+                            SelectProps={{
+                                MenuProps: {
+                                className: classes.menu,
+                                },
+                            }}
+                            margin="normal"
+                            variant="outlined"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            >
+                            {genres
+                                .filter(option => option.value !== 'All')
+                                .map(option => (
+                                <MenuItem className={classes.menuItem} key={option.value} value={option.value}>
+                                {option.value}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label='description'
+                            name='description'
+                            multiline
+                            placeholder='enter musical desciption'
+                            fullWidth={true}
+                            id="outlined-name"
+                            className={classes.textField}
+                            value={this.state.description}
+                            onChange={this.handleInputs}
+                            margin="normal"
+                            variant="outlined"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <BeatPatternInput />
+                    </Grid>
                 </Grid>
-                <Grid item xs={1}>
-                    <TextField
-                        label='bpm'
-                        name='title'
-                        placeholder='enter musical bpm'
-                        fullWidth={true}
-                        id="outlined-name"
-                        className={classes.textField}
-                        value={this.state.bpm}
-                        onChange={this.handleInputs}
-                        margin="normal"
-                        variant="outlined"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={5}>
-                    <TextField
-                        label='select genre'
-                        fullWidth={true}
-                        id="outlined-select-genre"
-                        select
-                        name='select'
-                        className={classes.textField}
-                        value={this.state.genre}
-                        onChange={this.handleGenres}
-                        SelectProps={{
-                            MenuProps: {
-                            className: classes.menu,
-                            },
-                        }}
-                        margin="normal"
-                        variant="outlined"
-                        >
-                        {genres.map(option => (
-                            <MenuItem className={classes.menuItem} key={option.value} value={option.value}>
-                            {option.value}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography className={classes.description} component="p">
-                        <span style={{display: 'block', color: 'black', fontWeight: 'bold', fontSize: 18}}>description</span>
-                        hols
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                BeatPatternInput
-                </Grid>
-            </Grid>
+            </DialogContent>
+
+            <DialogActions>
+                <Button onClick={this.handleClose} color="primary">
+                    Save changes
+                </Button>
+            </DialogActions>
+
         
             
         </Dialog>
@@ -134,5 +184,7 @@ DetailsDialog.propTypes = {
   selectedValue: PropTypes.string,
 };
 
-export default withStyles(styles)(DetailsDialog);
+export default connect(null, {
+    patternInput
+})(withStyles(styles)(DetailsDialog));
  

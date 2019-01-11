@@ -8,3 +8,14 @@ export const genres = [
     {value: 'Electronica'},
     {value: 'Pop'}
 ];
+
+export const instruments = [
+    'kick',
+    'snare',
+    'tom',
+    'clap',
+    'cowbell',
+    'closed hat',
+    'open hat',
+    'cymbal'
+]
