@@ -3,8 +3,16 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import BeatTrackInput from './BeatTrackInput';
 
-const styles = () => {
-
+const styles = {
+    container: {
+        minWidth: 620
+    },
+    trackName: {
+        padding: 0
+    },
+    trackPattern: {
+        marginLeft: '-10px'
+    }
 }
 
 class BeatPatternInput extends Component {
@@ -37,9 +45,9 @@ class BeatPatternInput extends Component {
                     Object.keys(this.state.beats).map(beat => {
                         console.log(beat)
                         return (
-                            <Grid key={beat} container direction="row" align="left">
-                                <Grid item xs={1}>{beat}</Grid>
-                                <Grid item xs={11}>
+                            <Grid key={beat} container direction="row" align="left" className={classes.container}>
+                                <Grid item xs={2} className={classes.trackName}>{beat}</Grid>
+                                <Grid item xs={10} className={classes.trackPattern}>
                                     <BeatTrackInput track={beat} clickStep={this.handleClickStep} steps={this.state.beats[beat]}/>
                                 </Grid>
                             </Grid>

@@ -17,12 +17,15 @@ import { patternInput } from '../../actions'
 const styles = {
   dialog: {},
   title: {
-    marginLeft: '-23px'
+    
   },
   description: {
     marginBottom: 20
   },
-  textField: {
+  textFieldTitle: {
+      padding: '0 20px 0 0'
+  },
+  textFieldBpm: {
       padding: '0 20px 0 0'
   }
 };
@@ -68,11 +71,11 @@ class DetailsDialog extends React.Component {
         const { classes, onClose, patternInput, ...other } = this.props;
         return (
         <Dialog
-            maxWidth={'md'}
+            maxWidth={'sm'}
             fullWidth={true}
             className={classes.dialog} onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
             
-            <DialogTitle className={classes.title} id="simple-dialog-title">title</DialogTitle>
+            <DialogTitle className={classes.title} id="simple-dialog-title">Add a Beat Pattern</DialogTitle>
             
             <DialogContent>
 
@@ -84,7 +87,7 @@ class DetailsDialog extends React.Component {
                             placeholder='enter title of the beat'
                             fullWidth={true}
                             id="outlined-name"
-                            className={classes.textField}
+                            className={classes.textFieldTitle}
                             value={this.state.title}
                             onChange={this.handleInputs}
                             margin="normal"
@@ -98,10 +101,10 @@ class DetailsDialog extends React.Component {
                         <TextField
                             label='bpm'
                             name='bpm'
-                            placeholder='enter bpm'
+                            placeholder='bpm'
                             fullWidth={true}
                             id="outlined-name"
-                            className={classes.textField}
+                            className={classes.textFieldBpm}
                             value={this.state.bpm}
                             onChange={this.handleInputs}
                             margin="normal"
