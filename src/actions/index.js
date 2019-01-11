@@ -43,3 +43,17 @@ export const patternInput = (beatData) => {
         payload: beatData
     }
 }
+
+export const getBeatInput = (beats) => {
+    return {
+        type: 'GET_BEAT_INPUT',
+        payload: beats
+    }
+}
+
+export const postBeat = (beatPattern) => {
+    return async dispatch => {
+        const response = await beatsDatabase.post('/beatsDatabase', beatPattern);
+        dispatch({type: 'POST_BEAT_PATTERN', payload: response});
+    }
+}

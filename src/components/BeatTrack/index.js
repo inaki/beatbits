@@ -38,7 +38,7 @@ const StepOff = styled.span`
 
 class BeatTrack extends Component {
     
-    renderSteps(steps) {
+    renderSteps(steps = []) {
         return steps.map( (step, index) => {
             const stepElement = step === 1 
                 ? <StepOn key={index} stepNumber={index + 1}>{index + 1}</StepOn> 

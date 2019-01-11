@@ -19,45 +19,45 @@ const BeatRow = styled.div`
 
 class BeatPattern extends Component {
     render() {
-        const { rythm } = this.props;
+        const { beats } = this.props;
         
         return (
             <div>
                 <BeatRow>
                     <BeatTitle>Accent : </BeatTitle>
-                    <BeatTrack steps={rythm['accent']} /> 
+                    <BeatTrack steps={beats['accent']} /> 
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Cymball : </BeatTitle>
-                    <BeatTrack steps={rythm['cymball']} />
+                    <BeatTrack steps={beats['cymball']} />
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Open Hat : </BeatTitle>
-                    <BeatTrack steps={rythm['open hat']} /> 
+                    <BeatTrack steps={beats['open hat']} /> 
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Close Hat : </BeatTitle>
-                    <BeatTrack steps={rythm['closed hat']} /> 
+                    <BeatTrack steps={beats['closed hat']} /> 
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Cowbell : </BeatTitle>
-                    <BeatTrack steps={rythm['cowbell']} /> 
+                    <BeatTrack steps={beats['cowbell']} /> 
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Clap : </BeatTitle>
-                    <BeatTrack steps={rythm['clap']} /> 
+                    <BeatTrack steps={beats['clap']} /> 
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Tom : </BeatTitle>
-                    <BeatTrack steps={rythm['tom']} /> 
+                    <BeatTrack steps={beats['tom']} /> 
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Snare: </BeatTitle>
-                    <BeatTrack steps={rythm['snare']} /> 
+                    <BeatTrack steps={beats['snare']} /> 
                 </BeatRow>
                 <BeatRow>
                     <BeatTitle>Kick: </BeatTitle>
-                    <BeatTrack steps={rythm['kick']} /> 
+                    <BeatTrack steps={beats['kick']} /> 
                 </BeatRow>
             </div>
         )

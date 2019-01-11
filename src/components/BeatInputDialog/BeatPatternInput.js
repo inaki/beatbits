@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import BeatTrackInput from './BeatTrackInput';
+import { connect } from 'react-redux';
+import { getBeatInput } from '../../actions';
 
 const styles = {
     container: {
@@ -33,8 +35,8 @@ class BeatPatternInput extends Component {
     handleClickStep = (step, track) => {
         const newSteps = this.state.beats[track];
         newSteps[step] = newSteps[step] === 0 ? 1 : 0;
-        this.state.beats[track] = newSteps;
         this.setState({steps: {...this.state.beats, ...this.state.beats[track]}});
+        this.props.getBeatInput({beats: this.state.beats});
     }
 
     render() {
@@ -43,7 +45,6 @@ class BeatPatternInput extends Component {
             <Fragment>
                 {
                     Object.keys(this.state.beats).map(beat => {
-                        console.log(beat)
                         return (
                             <Grid key={beat} container direction="row" align="left" className={classes.container}>
                                 <Grid item xs={2} className={classes.trackName}>{beat}</Grid>
@@ -59,4 +60,6 @@ class BeatPatternInput extends Component {
     }
 }
 
-export default withStyles(styles)(BeatPatternInput);
+export default connect(null, {
+    getBeatInput
+})(withStyles(styles)(BeatPatternInput));

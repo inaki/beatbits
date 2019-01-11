@@ -12,7 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { genres } from '../../utils/variables';
 import BeatPatternInput from './BeatPatternInput';
 import { connect } from 'react-redux';
-import { patternInput } from '../../actions'
+import { patternInput, postBeat } from '../../actions'
 
 const styles = {
   dialog: {},
@@ -48,6 +48,11 @@ class DetailsDialog extends React.Component {
         this.props.onClose(value);
     };
 
+    handleSubmit = () => {
+        this.props.postBeat({...this.state, ...this.props.beatsInput});
+        this.handleClose();
+    }
+
     handleInputs = (e) => {
         switch(e.target.name) {
             case 'title': 
@@ -68,7 +73,7 @@ class DetailsDialog extends React.Component {
     }
 
     render() {
-        const { classes, onClose, patternInput, ...other } = this.props;
+        const { classes, onClose, patternInput, postBeat, beatsInput, ...other } = this.props;
         return (
         <Dialog
             maxWidth={'sm'}
@@ -103,12 +108,13 @@ class DetailsDialog extends React.Component {
                             name='bpm'
                             placeholder='bpm'
                             fullWidth={true}
-                            id="outlined-name"
+                            id='outlined-name'
                             className={classes.textFieldBpm}
                             value={this.state.bpm}
+                            type='number'
                             onChange={this.handleInputs}
-                            margin="normal"
-                            variant="outlined"
+                            margin='normal'
+                            variant='outlined'
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -118,7 +124,7 @@ class DetailsDialog extends React.Component {
                         <TextField
                             label='select genre'
                             fullWidth={true}
-                            id="outlined-select-genre"
+                            id='outlined-select-genre'
                             select
                             name='genre'
                             className={classes.textField}
@@ -129,8 +135,8 @@ class DetailsDialog extends React.Component {
                                 className: classes.menu,
                                 },
                             }}
-                            margin="normal"
-                            variant="outlined"
+                            margin='normal'
+                            variant='outlined'
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -151,12 +157,12 @@ class DetailsDialog extends React.Component {
                             multiline
                             placeholder='enter musical desciption'
                             fullWidth={true}
-                            id="outlined-name"
+                            id='outlined-name'
                             className={classes.textField}
                             value={this.state.description}
                             onChange={this.handleInputs}
-                            margin="normal"
-                            variant="outlined"
+                            margin='normal'
+                            variant='outlined'
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -169,8 +175,8 @@ class DetailsDialog extends React.Component {
             </DialogContent>
 
             <DialogActions>
-                <Button onClick={this.handleClose} color="primary">
-                    Save changes
+                <Button onClick={this.handleSubmit} color='primary'>
+                    Save Pattern
                 </Button>
             </DialogActions>
 
@@ -184,10 +190,17 @@ class DetailsDialog extends React.Component {
 DetailsDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func,
-  selectedValue: PropTypes.string,
+  selectedValue: PropTypes.string
 };
 
-export default connect(null, {
-    patternInput
+const mapStateToProps = (state) => {
+    return {
+        beatsInput: state.beatPatternInput
+    }
+}
+
+export default connect(mapStateToProps, {
+    patternInput,
+    postBeat
 })(withStyles(styles)(DetailsDialog));
  
