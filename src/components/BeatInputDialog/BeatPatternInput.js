@@ -1,10 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import BeatTrackInput from './BeatTrackInput';
 import { connect } from 'react-redux';
 import { getBeatInput } from '../../actions';
+
+import {
+    Grid
+} from '@material-ui/core';
+
+import { withStyles } from '@material-ui/core/styles';
+
+import BeatTrackInput from './BeatTrackInput';
 
 const styles = {
     container: {

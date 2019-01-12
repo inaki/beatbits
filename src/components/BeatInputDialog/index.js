@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import { genres } from '../../utils/variables';
-import BeatPatternInput from './BeatPatternInput';
 import { connect } from 'react-redux';
 import { patternInput, postBeat } from '../../actions'
+
+import { genres } from '../../utils/variables';
+
+import {
+    Dialog,
+    DialogTitle,
+    DialogActions,
+    DialogContent,
+    Button,
+    Grid,
+    TextField,
+    MenuItem
+} from '@material-ui/core';
+
+import { withStyles } from '@material-ui/core/styles';
+
+import BeatPatternInput from './BeatPatternInput';
 
 const styles = {
   dialog: {},

@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import {
+  Dialog,
+  DialogTitle,
+  Typography,
+  Grid
+} from '@material-ui/core';
+
 import { withStyles } from '@material-ui/core/styles';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import Typography from '@material-ui/core/Typography';
+
 import BeatPatternExpanded from '../BeatPatternExpanded';
-import Grid from '@material-ui/core/Grid';
 
 const styles = {
   dialog: {},

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+
 import { searchBeatSelect, searchBeatInput } from '../../actions'
 import { genres } from '../../utils/variables';
+
+import {TextField, Grid, MenuItem} from '@material-ui/core';
+
+import { withStyles } from '@material-ui/core/styles';
+
 
 const styles = () => ({
   dense: {

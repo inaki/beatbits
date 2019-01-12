@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import BeatTrack from '../BeatTrack';
+
 import styled from 'styled-components';
+
+import BeatTrack from '../BeatTrack';
 
 const BeatTitle = styled.span`
     color: #666;

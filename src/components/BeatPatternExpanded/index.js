@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import BeatTrackExpanded from '../BeatTrackExpanded';
+
+import {Grid, Typography} from '@material-ui/core';
+
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+
+import BeatTrackExpanded from '../BeatTrackExpanded';
 
 const BeatTitle = styled.span`
     color: #666;

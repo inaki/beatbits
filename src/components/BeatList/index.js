@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectBeat, fetchBeats } from '../../actions';
-import BeatCard from '../BeatCard';
+
+import {Grid} from '@material-ui/core';
+
 import DetailsDialog from '../DetailsDialog';
-import Grid from '@material-ui/core/Grid';
+import BeatCard from '../BeatCard';
 
 class BeatList extends Component {
 

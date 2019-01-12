@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+
+import {Grid, Fab} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Grid from '@material-ui/core/Grid';
+
 import { withStyles } from '@material-ui/core/styles';
+
 import BeatInputDialog from '../BeatInputDialog';
 
 
