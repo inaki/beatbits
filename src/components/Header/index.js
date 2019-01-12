@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
@@ -47,6 +48,10 @@ class Header extends Component {
             </Fragment>
         )
     }
+}
+
+Header.propTypes = {
+    classes: PropTypes.object
 }
 
 export default withStyles(styles)(Header);

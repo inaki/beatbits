@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -97,6 +98,12 @@ class SearchBeats extends Component {
             </form>
         );
     }
+}
+
+SearchBeats.propTypes = {
+    classes: PropTypes.object,
+    searchBeatInput: PropTypes.func,
+    searchBeatSelect: PropTypes.func
 }
 
 export default connect(null, {

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import BeatTrackInput from './BeatTrackInput';
@@ -58,6 +59,11 @@ class BeatPatternInput extends Component {
             </Fragment>
         )
     }
+}
+
+BeatPatternInput.propTypes = {
+    classes: PropTypes.object,
+    getBeatInput: PropTypes.func
 }
 
 export default connect(null, {

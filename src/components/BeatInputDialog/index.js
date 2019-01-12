@@ -190,7 +190,10 @@ class DetailsDialog extends React.Component {
 DetailsDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func,
-  selectedValue: PropTypes.string
+  selectedValue: PropTypes.string,
+  patternInput: PropTypes.func,
+  postBeat: PropTypes.func,
+  beatsInput: PropTypes.object
 };
 
 const mapStateToProps = (state) => {

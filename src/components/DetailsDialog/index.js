@@ -64,6 +64,7 @@ DetailsDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func,
   selectedValue: PropTypes.string,
+  selectedBeat: PropTypes.object
 };
 
 export default withStyles(styles)(DetailsDialog);

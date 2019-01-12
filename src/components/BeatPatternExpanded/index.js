@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import BeatTrackExpanded from '../BeatTrackExpanded';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -41,7 +42,7 @@ const BeatRow = styled.div`
 
 class BeatPatternExpanded extends Component {
     render() {
-        const { rythm, bpm, genre } = this.props.selectedBeat;
+        const { beats, bpm, genre } = this.props.selectedBeat;
         
         return (
             <div>
@@ -62,31 +63,31 @@ class BeatPatternExpanded extends Component {
                     <Grid item xs={8}>
                         <BeatTrackExpandedsWrapper>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['accent']} /> 
+                                <BeatTrackExpanded steps={beats['accent']} /> 
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['cymball']} />
+                                <BeatTrackExpanded steps={beats['cymball']} />
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['open hat']} /> 
+                                <BeatTrackExpanded steps={beats['open hat']} /> 
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['closed hat']} /> 
+                                <BeatTrackExpanded steps={beats['closed hat']} /> 
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['cowbell']} /> 
+                                <BeatTrackExpanded steps={beats['cowbell']} /> 
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['clap']} /> 
+                                <BeatTrackExpanded steps={beats['clap']} /> 
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['tom']} /> 
+                                <BeatTrackExpanded steps={beats['tom']} /> 
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['snare']} /> 
+                                <BeatTrackExpanded steps={beats['snare']} /> 
                             </BeatRow>
                             <BeatRow>
-                                <BeatTrackExpanded steps={rythm['kick']} /> 
+                                <BeatTrackExpanded steps={beats['kick']} /> 
                             </BeatRow>
                         </BeatTrackExpandedsWrapper>
                     </Grid>
@@ -106,6 +107,12 @@ class BeatPatternExpanded extends Component {
             </div>
         )
     }
+}
+
+BeatPatternExpanded.propTypes = {
+    beats: PropTypes.array,
+    bpm: PropTypes.string,
+    genre: PropTypes.string
 }
 
 export default BeatPatternExpanded;

@@ -54,6 +54,10 @@ function BeatCard(props) {
 
 BeatCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  title: PropTypes.string,
+  bpm: PropTypes.string,
+  beats: PropTypes.object,
+  handleSelect: PropTypes.func 
 };
 
 export default withStyles(styles)(BeatCard);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectBeat, fetchBeats } from '../../actions';
 import BeatCard from '../BeatCard';
@@ -74,6 +75,14 @@ class BeatList extends Component {
             </div>
         );
     }
+}
+
+BeatList.propTypes = {
+    selectedBeat: PropTypes.object,
+    beats: PropTypes.array,
+    beatsSearch: PropTypes.object,
+    selectBeat: PropTypes.func,
+    fetchBeats: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

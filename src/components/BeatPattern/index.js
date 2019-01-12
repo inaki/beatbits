@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import BeatTrack from '../BeatTrack';
 import styled from 'styled-components';
 
@@ -62,6 +63,10 @@ class BeatPattern extends Component {
             </div>
         )
     }
+}
+
+BeatPattern.propTypes = {
+    beats: PropTypes.object
 }
 
 export default BeatPattern;
