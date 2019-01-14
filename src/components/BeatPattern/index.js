@@ -1,67 +1,67 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
+import { withStyles } from '@material-ui/core/styles';
 
 import BeatTrack from '../BeatTrack';
 
-const BeatTitle = styled.span`
-    color: #666;
-    padding-top: 5px;
-    text-align: left;
-    font-size: 0.8rem;
-    font-family: helvetica;
-`;
-
-const BeatRow = styled.div`
-    width: 100%;
-    display: flex;
-    flex-grow: 1;
-    justify-content: space-between;
-`;
+const styles = theme => ({
+    trackTitle: {
+        color: '#666',
+        paddingTop: '5px',
+        textAlign: 'left',
+        fontSize: '0.8rem'
+    },
+    beatRow: {
+        width: '100%',
+        display: 'flex',
+        flexGrow: 1,
+        justifyContent: 'space-between'
+    }
+})
 
 class BeatPattern extends Component {
     render() {
-        const { beats } = this.props;
+        const { beats, classes } = this.props;
         
         return (
             <div>
-                <BeatRow>
-                    <BeatTitle>Accent : </BeatTitle>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Accent : </span>
                     <BeatTrack steps={beats['accent']} /> 
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Cymball : </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Cymball : </span>
                     <BeatTrack steps={beats['cymball']} />
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Open Hat : </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Open Hat : </span>
                     <BeatTrack steps={beats['open hat']} /> 
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Close Hat : </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Close Hat : </span>
                     <BeatTrack steps={beats['closed hat']} /> 
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Cowbell : </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Cowbell : </span>
                     <BeatTrack steps={beats['cowbell']} /> 
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Clap : </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Clap : </span>
                     <BeatTrack steps={beats['clap']} /> 
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Tom : </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Tom : </span>
                     <BeatTrack steps={beats['tom']} /> 
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Snare: </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Snare: </span>
                     <BeatTrack steps={beats['snare']} /> 
-                </BeatRow>
-                <BeatRow>
-                    <BeatTitle>Kick: </BeatTitle>
+                </div>
+                <div className={classes.beatRow}>
+                    <span className={classes.trackTitle}>Kick: </span>
                     <BeatTrack steps={beats['kick']} /> 
-                </BeatRow>
+                </div>
             </div>
         )
     }
@@ -71,4 +71,4 @@ BeatPattern.propTypes = {
     beats: PropTypes.object
 }
 
-export default BeatPattern;
+export default withStyles(styles)(BeatPattern);

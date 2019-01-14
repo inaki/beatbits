@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { patternInput, postBeat } from '../../actions'
+import uniqid from 'uniqid';
 
 import { genres } from '../../utils/variables';
 
@@ -21,25 +22,29 @@ import { withStyles } from '@material-ui/core/styles';
 import BeatPatternInput from './BeatPatternInput';
 
 const styles = {
-  dialog: {},
-  title: {
-    
-  },
-  description: {
+    dialog: {},
+    title: {
+
+    },
+    description: {
     marginBottom: 20
-  },
-  textFieldTitle: {
-      padding: '0 20px 0 0'
-  },
-  textFieldBpm: {
-      padding: '0 20px 0 0'
-  }
+    },
+    textFieldTitle: {
+        padding: '0 20px 0 0'
+    },
+    textFieldBpm: {
+        padding: '0 0px 0 0'
+    },  
+    textFieldArtist: {
+    padding: '0 20px 0 0'
+    }
 };
 
 class DetailsDialog extends React.Component {
 
     state = {
         title: '',
+        artist: '',
         description: '',
         beats: [],
         bpm: '',
@@ -55,7 +60,18 @@ class DetailsDialog extends React.Component {
     };
 
     handleSubmit = () => {
-        this.props.postBeat({...this.state, ...this.props.beatsInput});
+        const inputPayload = {
+            "id": uniqid(),
+            "artist": this.state.artist,
+            "author": "inaki",
+            "title": this.state.title,
+            "bpm": this.state.bpm,
+            "beats": this.props.beatsInput.beats,
+            "genre": this.state.genre,
+            "description": this.state.description
+        }
+        this.props.postBeat(inputPayload);
+        //console.log(inputPayload)
         this.handleClose();
     }
 
@@ -91,7 +107,7 @@ class DetailsDialog extends React.Component {
             <DialogContent>
 
                 <Grid container>
-                    <Grid item xs={5}>
+                    <Grid item xs={6}>
                         <TextField
                             label='title'
                             name='title'
@@ -108,25 +124,7 @@ class DetailsDialog extends React.Component {
                             }}
                         />
                     </Grid>
-                    <Grid item xs={2}>
-                        <TextField
-                            label='bpm'
-                            name='bpm'
-                            placeholder='bpm'
-                            fullWidth={true}
-                            id='outlined-name'
-                            className={classes.textFieldBpm}
-                            value={this.state.bpm}
-                            type='number'
-                            onChange={this.handleInputs}
-                            margin='normal'
-                            variant='outlined'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={5}>
+                    <Grid item xs={6}>
                         <TextField
                             label='select genre'
                             fullWidth={true}
@@ -138,7 +136,7 @@ class DetailsDialog extends React.Component {
                             onChange={this.handleInputs}
                             SelectProps={{
                                 MenuProps: {
-                                className: classes.menu,
+                                    className: classes.menu,
                                 },
                             }}
                             margin='normal'
@@ -155,6 +153,42 @@ class DetailsDialog extends React.Component {
                                 </MenuItem>
                             ))}
                         </TextField>
+                    </Grid>
+                    <Grid item xs={9}>
+                        <TextField
+                            label='artist'
+                            name='artist'
+                            placeholder='artist'
+                            fullWidth={true}
+                            id='outlined-name'
+                            className={classes.textFieldArtist}
+                            value={this.state.artist}
+                            type='text'
+                            onChange={this.handleInputs}
+                            margin='normal'
+                            variant='outlined'
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <TextField
+                            label='bpm'
+                            name='bpm'
+                            placeholder='bpm'
+                            fullWidth={true}
+                            id='outlined-name'
+                            className={classes.textFieldBpm}
+                            value={this.state.bpm}
+                            type='number'
+                            onChange={this.handleInputs}
+                            margin='normal'
+                            variant='outlined'
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
                     </Grid>
                     <Grid item xs={12}>
                         <TextField

@@ -7,7 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 
 import BeatInputDialog from '../BeatInputDialog';
-
+import GoogleAuth from '../GoogleAuth';
 
 const styles = {
     fab: {
@@ -18,7 +18,8 @@ const styles = {
 
 class Header extends Component {
     state = {
-        open: false
+        open: false,
+        signedIn: null
     }
 
     handleClickOpen = () => {
@@ -42,9 +43,12 @@ class Header extends Component {
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>BeatBits</Grid>
                     <Grid item xs={1}>
-                        <Fab color="primary" aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
-                            <AddIcon />
-                        </Fab>
+                        { this.state.signedIn
+                            ? <Fab color="primary" aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
+                                    <AddIcon />
+                              </Fab>
+                            : <GoogleAuth />
+                        }
                     </Grid>
                 </Grid>
             </Fragment>

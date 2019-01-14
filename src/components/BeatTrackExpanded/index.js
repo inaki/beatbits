@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StepOn = styled.span`
-    font-family: 'Roboto';
     display: inline-block;
-    margin: 2px;
-    width: 35px;
-    height: 35px;
+    margin: 5px 5px;
+    width: 25px;
+    height: 25px;
     font-size: 0.90rem;
     padding-top: 6px;
     text-align: center;
@@ -24,11 +23,10 @@ const StepOn = styled.span`
 `;
 
 const StepOff = styled.span`
-    font-family: 'Helvetica';
     display: inline-block;
-    margin: 2px;
-    width: 35px;
-    height: 35px;
+    margin: 5px 5px;
+    width: 25px;
+    height: 25px;
     font-size: 0.90rem;
     padding-top: 6px;
     text-align: center;

@@ -3,6 +3,7 @@
     {
       "id": 1,
       "author": "iñaki",
+      "artist": "some artist",
       "title": "Mi Gente",
       "bpm": "115",
       "beats": {
@@ -175,6 +176,7 @@
     {
       "id": 2,
       "author": "doris",
+      "artist": "some artist",
       "title": "El Ganador",
       "bpm": "118",
       "beats": {
@@ -347,6 +349,7 @@
     {
       "id": 3,
       "author": "iñaki",
+      "artist": "some artist",
       "title": "Born Sleepy",
       "bpm": "128",
       "beats": {
@@ -519,6 +522,7 @@
     {
       "id": 4,
       "author": "iñaki",
+      "artist": "some artist",
       "title": "Sexual Healing",
       "bpm": "122",
       "beats": {
@@ -690,8 +694,9 @@
     },
     {
       "id": 5,
-      "author": "diego",
-      "title": "Afrika",
+      "author": "iñaki",
+      "artist": "some artist",
+      "title": "Sexual Healing",
       "bpm": "122",
       "beats": {
         "accent": [
@@ -861,8 +866,11 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol"
     },
     {
-      "title": "The Misery",
-      "description": "Acid Pauli & Nu",
+      "id": "jqvj6drp",
+      "author": "inaki",
+      "artist": "some artist",
+      "title": "Welcome Back",
+      "bpm": "122",
       "beats": {
         "accent": [
           1,
@@ -875,7 +883,7 @@
           0,
           0,
           0,
-          0,
+          1,
           0,
           0,
           0,
@@ -883,7 +891,7 @@
           0
         ],
         "open hat": [
-          1,
+          0,
           0,
           0,
           0,
@@ -901,25 +909,25 @@
           0
         ],
         "closed hat": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "cymbal": [
           1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "cymball": [
+          0,
           0,
           0,
           0,
@@ -937,7 +945,7 @@
           0
         ],
         "cowbell": [
-          1,
+          0,
           0,
           0,
           0,
@@ -959,14 +967,14 @@
           0,
           0,
           0,
+          1,
           0,
           0,
           0,
           0,
           0,
           0,
-          0,
-          0,
+          1,
           0,
           0,
           0,
@@ -1027,202 +1035,8 @@
           0
         ]
       },
-      "bpm": "122",
-      "genre": "Deep House",
-      "id": 6
-    },
-    {
-      "title": "Jorge",
-      "description": "Satori Remix",
-      "beats": {
-        "accent": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "open hat": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "closed hat": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "cymbal": [
-          0,
-          0,
-          0,
-          0,
-          1,
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "cowbell": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "clap": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "tom": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "snare": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "kick": [
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0
-        ]
-      },
-      "bpm": "122",
-      "genre": "Deep House",
-      "id": 7
-    }
-  ],
-  "users": [
-    {
-      "id": "u1",
-      "name": "iñaki"
-    },
-    {
-      "id": "u2",
-      "name": "diego"
-    },
-    {
-      "id": "u3",
-      "name": "lolita"
-    },
-    {
-      "id": "u4",
-      "name": "doris"
-    },
-    {
-      "id": "u5",
-      "name": "felix"
+      "genre": "Techno",
+      "description": "LaNuar music"
     }
   ]
 }

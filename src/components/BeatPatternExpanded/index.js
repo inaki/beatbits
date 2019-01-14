@@ -14,7 +14,6 @@ const BeatTitle = styled.span`
     min-height: 30px;
     text-align: left;
     font-size: 0.8rem;
-    font-family: helvetica;
     margin: 1px 10px 8px 0;
     text-align: right;
 `;
@@ -48,64 +47,35 @@ class BeatPatternExpanded extends Component {
         
         return (
             <div>
-                <Grid container>
-                    <Grid item xs={2}>
-                        <BeatTitleWrapper>
-                            <BeatTitle>Accent : </BeatTitle>
-                            <BeatTitle>Cymball : </BeatTitle>
-                            <BeatTitle>Open Hat : </BeatTitle>
-                            <BeatTitle>Close Hat : </BeatTitle>
-                            <BeatTitle>Cowbell : </BeatTitle>
-                            <BeatTitle>Clap : </BeatTitle>
-                            <BeatTitle>Tom : </BeatTitle>
-                            <BeatTitle>Snare: </BeatTitle>
-                            <BeatTitle>Kick: </BeatTitle>
-                        </BeatTitleWrapper>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <BeatTrackExpandedsWrapper>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['accent']} /> 
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['cymball']} />
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['open hat']} /> 
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['closed hat']} /> 
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['cowbell']} /> 
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['clap']} /> 
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['tom']} /> 
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['snare']} /> 
-                            </BeatRow>
-                            <BeatRow>
-                                <BeatTrackExpanded steps={beats['kick']} /> 
-                            </BeatRow>
-                        </BeatTrackExpandedsWrapper>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <BeatDetailsWrapper>
-                            <Typography component="p">
-                                <span style={{color: 'gray'}}>genre : </span> 
-                                <span style={{color: 'black', textTransform: 'capitalize'}}>{genre}</span>
-                            </Typography>
-                            <Typography component="p">
-                                <span style={{color: 'gray'}}>bpm : </span>
-                                <span style={{color: 'black', textTransform: 'capitalize'}}>{bpm}</span> 
-                            </Typography>
-                        </BeatDetailsWrapper>
-                    </Grid>
-                </Grid>
+                <BeatTrackExpandedsWrapper>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['accent']} /> 
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['cymball']} />
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['open hat']} /> 
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['closed hat']} /> 
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['cowbell']} /> 
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['clap']} /> 
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['tom']} /> 
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['snare']} /> 
+                    </BeatRow>
+                    <BeatRow>
+                        <BeatTrackExpanded steps={beats['kick']} /> 
+                    </BeatRow>
+                </BeatTrackExpandedsWrapper>
             </div>
         )
     }

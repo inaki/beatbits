@@ -29,18 +29,24 @@ const styles = {
   bpm: {
     color: '#666'
   },
+  artist: {
+    color: '#666'
+  },
   description: {
     color: '#666'
   }
 };
 
 function BeatCard(props) {
-  const { classes, title, bpm, beats, handleSelect } = props;
+  const { classes, title, bpm, beats, artist, handleSelect } = props;
   return (
     <Card className={classes.card}>
       <CardContent>
         <Typography component="h1" className={classes.title} color="textSecondary" gutterBottom>
           {title}
+        </Typography>
+        <Typography className={classes.artist} component="p">
+          artist: {artist}
         </Typography>
         <Typography className={classes.bpm} component="p">
           bpm : {bpm}

@@ -7,26 +7,27 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import orange from '@material-ui/core/colors/orange';
+import red from '@material-ui/core/colors/red';
+import purple from '@material-ui/core/colors/purple';
 
 import reducers from './reducers';
 
-const beatbitsTheme = createMuiTheme({
+const theme = createMuiTheme({
     palette: {
-        secondary: {
-        main: orange[500],
-        },
+        primary: purple,
+        secondary: red,
     },
     typography: { 
+        htmlFontSize: 16,
         useNextVariants: true,
-        fontFamily: ['"Helvetica"',].join(',')
+        fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
     },
 });
 
 
 ReactDOM.render(
     <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-        <MuiThemeProvider theme={beatbitsTheme}>
+        <MuiThemeProvider theme={theme}>
             <App />
         </MuiThemeProvider>
     </Provider>,

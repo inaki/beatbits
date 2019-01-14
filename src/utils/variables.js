@@ -17,5 +17,5 @@ export const instruments = [
     'cowbell',
     'closed hat',
     'open hat',
-    'cymbal'
+    'cymball'
 ]

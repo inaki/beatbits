@@ -10,15 +10,12 @@ import BeatList from './components/BeatList';
 import SearchBeats from './components/SearchBeats';
 import Header from './components/Header';
 
-const styles = {
-    root: {
-        fontFamily: 'Roboto'
-    },
+const styles = theme => ({
     card: {
       minWidth: 565,
       margin: 10
     }
-};
+});
 
 class App extends Component {
     constructor(props) {
