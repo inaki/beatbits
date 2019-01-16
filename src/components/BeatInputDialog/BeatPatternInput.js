@@ -10,31 +10,32 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 
 import BeatTrackInput from './BeatTrackInput';
+import { tracks } from '../../utils/variables';
+import { generateBeats } from '../../utils/helpers';
 
 const styles = {
     container: {
         minWidth: 620
     },
     trackName: {
-        padding: 0
+        padding: '4px 2px',
+        fontFamily: 'Arial',
+        color: 'grey'
     },
-    trackPattern: {
-        marginLeft: '-10px'
-    }
+    trackPattern: {}
 }
 
 class BeatPatternInput extends Component {
     state = {
-        beats: {
-            'accent': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'open hat': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'closed hat': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'cymball': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'cowbell': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'clap': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'tom': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'snare': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'kick': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        beats: {}
+    }
+
+    componentDidMount() {
+        const newBeatsPatterns = generateBeats(tracks);
+        if (this.props.existingBeats) {
+            this.setState({...this.state.beats, ...this.props.existingBeats});
+        } else {
+            this.setState({beats: {...this.state.beats, ...newBeatsPatterns}});
         }
     }
 
@@ -46,15 +47,18 @@ class BeatPatternInput extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, showAbbr = true } = this.props;
         return (
             <Fragment>
                 {
-                    Object.keys(this.state.beats).map(beat => {
+                    Object.keys(this.state.beats).map((beat, index) => {
                         return (
                             <Grid key={beat} container direction="row" align="left" className={classes.container}>
-                                <Grid item xs={2} className={classes.trackName}>{beat}</Grid>
-                                <Grid item xs={10} className={classes.trackPattern}>
+                                { showAbbr
+                                    ? <Grid item xs={1} className={classes.trackName}>{tracks[index].abbr}</Grid>
+                                    : null
+                                }
+                                <Grid item xs={11} className={classes.trackPattern}>
                                     <BeatTrackInput track={beat} clickStep={this.handleClickStep} steps={this.state.beats[beat]}/>
                                 </Grid>
                             </Grid>

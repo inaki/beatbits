@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { patternInput, postBeat } from '../../actions';
-import uniqid from 'uniqid';
+import { patternInput, updateBeat } from '../../actions';
 
 import {
   Dialog,
   DialogTitle,
-  DialogActions,
   DialogContent,
   Button,
   Typography,
@@ -17,17 +15,17 @@ import {
 } from '@material-ui/core';
 
 
-import { genres } from '../../utils/variables';
+import { genres, tracks } from '../../utils/variables';
 
 import { withStyles } from '@material-ui/core/styles';
 
 import BeatPatternExpanded from '../BeatPatternExpanded';
+import BeatPatternInput from '../BeatInputDialog/BeatPatternInput';
 
 const styles = theme => ({
   dialog: {},
   title: {
-    marginLeft: '8px',
-    margin: '20px'
+    fontSize: '2rem'
   },
   description: {
     margin: '20px 0'
@@ -49,15 +47,28 @@ const styles = theme => ({
     paddingRight: '40px'
   },
   editButton: {
-    height: 56,
+    height: 40,
+    marginTop: 7,
     width: 116
+  },
+  trackNamesWrapper: {
+    height: 295,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    marginTop: 9,
+    marginLeft: 34
+  },
+  trackNameText: {
+    fontFamily: 'Arial',
+    color: 'gray'
   }
 });
 
 class DetailsDialog extends React.Component {
   
   state = {
-    edit: true,
+    edit: null,
     title: '',
     artist: '',
     description: '',
@@ -79,6 +90,7 @@ class DetailsDialog extends React.Component {
   }
 
   handleClose = () => {
+    this.setState({edit: false});
     this.props.onClose(this.props.selectedValue);
   };
 
@@ -88,7 +100,7 @@ class DetailsDialog extends React.Component {
 
   handleSubmit = () => {
       const inputPayload = {
-          "id": uniqid(),
+          "id": this.props.selectedBeat.id,
           "artist": this.state.artist,
           "author": "inaki",
           "title": this.state.title,
@@ -97,8 +109,7 @@ class DetailsDialog extends React.Component {
           "genre": this.state.genre,
           "description": this.state.description
       }
-      this.props.postBeat(inputPayload);
-      //console.log(inputPayload)
+      this.props.updateBeat(inputPayload);
       this.handleClose();
   }
 
@@ -130,14 +141,13 @@ class DetailsDialog extends React.Component {
   }
 
   render() {
-    const { classes, onClose, selectedValue, selectedBeat, beatsInput, patternInput, postBeat, ...other } = this.props;
-    console.log(this.state)
+    const { classes, onClose, selectedValue, isSignedIn, selectedBeat, beatsInput, patternInput, updateBeat, ...other } = this.props;
     return (
       <Dialog
         maxWidth={'md'}
         fullWidth={true}
         className={classes.dialog} onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-          <DialogTitle className={classes.title} id="simple-dialog-title">
+          <DialogTitle id="simple-dialog-title">
             <Grid container>
               <Grid item xs={1}></Grid>
               <Grid item xs={6}>
@@ -158,17 +168,21 @@ class DetailsDialog extends React.Component {
                         shrink: true,
                       }}
                       />
-                      : selectedBeat.title 
+                      : <Typography className={classes.title}>
+                          {selectedBeat.title }
+                        </Typography>
                     }
                 </Grid>
                 <Grid item xs={3}>
                   { this.state.edit
-                    ? <Button onClick={this.handleEdit} variant="outlined" color="primary" className={classes.editButton}>
+                    ? <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
                         Save
                       </Button>
-                    : <Button onClick={this.handleEdit} variant="outlined" color="primary" className={classes.editButton}>
+                    : isSignedIn
+                      ? <Button onClick={this.handleEdit} color="primary" className={classes.editButton}>
                         Edit
                       </Button>  
+                      : null
                   }
                 </Grid>
               <Grid item xs={2}/>
@@ -178,10 +192,15 @@ class DetailsDialog extends React.Component {
           <DialogContent>
             <Grid container>
               <Grid item xs={1}>
-                  <div style={{width: '100%', height: '400px', border: '1px solid pink'}}></div>
+                  <div className={classes.trackNamesWrapper}>
+                    { tracks.map( track => <div key={track.value} className={classes.trackNameText}>{track.abbr}</div>)}
+                  </div>
               </Grid>
               <Grid item xs={8}>
-                  <BeatPatternExpanded edit={this.state.edit} selectedBeat={selectedBeat}/>
+                  { this.state.edit
+                    ? <BeatPatternInput showAbbr={false} existingBeats={selectedBeat}/>
+                    : <BeatPatternExpanded edit={this.state.edit} selectedBeat={selectedBeat}/>
+                  }
                   { this.state.edit
                     ? <TextField
                         label='description'
@@ -200,7 +219,7 @@ class DetailsDialog extends React.Component {
                         }}
                     /> 
                     : <Typography className={classes.description} component="p">
-                        <span style={{display: 'block', color: 'black', fontWeight: 'bold', fontSize: 18}}>description</span>
+                        <span style={{display: 'block', color: 'black', fontSize: 18, marginBottom: 15}}>description</span>
                         {selectedBeat.description}
                       </Typography>
                   }
@@ -307,11 +326,12 @@ DetailsDialog.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-      beatsInput: state.beatPatternInput
+      beatsInput: state.beatPatternInput,
+      isSignedIn: state.auth.isSignedIn
   }
 }
 
 export default connect(mapStateToProps, {
   patternInput,
-  postBeat
+  updateBeat
 })(withStyles(styles)(DetailsDialog));

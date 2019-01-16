@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../../actions';
 import { GoogleKeys } from '../../env.js';
-import { Button } from '@material-ui/core';
+import { Button, Fab } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -12,6 +14,10 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
+  fab: {
+    margin: 16,
+    float: 'right'
+    }
 });
 
 class GoogleAuth extends Component {
@@ -29,22 +35,27 @@ class GoogleAuth extends Component {
         });
     }
 
-    onAuthChange = (isSignedIn) => {
+    onAuthChange = isSignedIn => {
         if (isSignedIn) {
-            this.props.signIn();
+            this.props.signIn(this.auth.currentUser.get().getId());
         } else {
             this.props.signOut();
         }
     }
 
     renderAuthButton() {
-        const { classes } = this.props;
+        const { classes, handleClickOpen } = this.props;
         if (this.props.isSignedIn === null) {
             return null;
         } else if (this.props.isSignedIn) {
-            return <Button onClick={this.onSignOutClick} color="primary" className={classes.button}>
-                logout
-            </Button>
+            return <div>
+                <Fab color="primary" aria-label="Add" className={classes.fab} onClick={handleClickOpen}>
+                    <AddIcon />
+                </Fab>
+                <Button onClick={this.onSignOutClick} color="primary" className={classes.button}>
+                    logout
+                </Button>
+            </div>
         } else {
             return <Button onClick={this.onSignInClick} color="primary" className={classes.button}>
                 login

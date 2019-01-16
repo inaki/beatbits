@@ -1,34 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {Grid, Typography} from '@material-ui/core';
-
 import styled from 'styled-components';
 
 import BeatTrackExpanded from '../BeatTrackExpanded';
-
-const BeatTitle = styled.span`
-    color: #666;
-    padding-top: 10px;
-    display: inline-block;
-    min-height: 30px;
-    text-align: left;
-    font-size: 0.8rem;
-    margin: 1px 10px 8px 0;
-    text-align: right;
-`;
-
-const BeatTitleWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const BeatDetailsWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-left: 20;
-    padding: 10px;
-`;
+import { tracks } from '../../utils/variables';
 
 const BeatTrackExpandedsWrapper = styled.div`
     min-width: 100%;
@@ -42,39 +18,23 @@ const BeatRow = styled.div`
 `;
 
 class BeatPatternExpanded extends Component {
+
+    renderBeatTracks() {
+        const { beats } = this.props.selectedBeat;
+        return tracks.map( beat => {
+            
+            return <BeatRow key={beat.value}>
+                <BeatTrackExpanded steps={beats[beat.value]} /> 
+            </BeatRow>;
+        });
+    }
+
     render() {
-        const { beats, bpm, genre } = this.props.selectedBeat;
         
         return (
             <div>
                 <BeatTrackExpandedsWrapper>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['accent']} /> 
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['cymball']} />
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['open hat']} /> 
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['closed hat']} /> 
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['cowbell']} /> 
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['clap']} /> 
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['tom']} /> 
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['snare']} /> 
-                    </BeatRow>
-                    <BeatRow>
-                        <BeatTrackExpanded steps={beats['kick']} /> 
-                    </BeatRow>
+                    { this.renderBeatTracks() } 
                 </BeatTrackExpandedsWrapper>
             </div>
         )

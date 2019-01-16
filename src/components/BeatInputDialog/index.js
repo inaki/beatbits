@@ -71,7 +71,6 @@ class DetailsDialog extends React.Component {
             "description": this.state.description
         }
         this.props.postBeat(inputPayload);
-        //console.log(inputPayload)
         this.handleClose();
     }
 
@@ -79,6 +78,9 @@ class DetailsDialog extends React.Component {
         switch(e.target.name) {
             case 'title': 
                 this.setState({title: e.target.value});
+                break;
+            case 'artist': 
+                this.setState({artist: e.target.value});
                 break;
             case 'description': 
                 this.setState({description: e.target.value});

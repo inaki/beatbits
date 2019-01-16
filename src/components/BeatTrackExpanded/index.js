@@ -45,6 +45,7 @@ class BeatTrack extends Component {
                 : <StepOff key={index} >{index + 1}</StepOff>
             return stepElement;
         });
+        return;
     }
     
     render() {
