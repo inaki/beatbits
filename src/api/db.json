@@ -1,20 +1,20 @@
 {
   "beatsDatabase": [
     {
-      "id": "jqyhagct",
-      "artist": "tktl",
-      "author": "inaki",
-      "title": "Manuela",
-      "bpm": "33",
+      "id": "jqzsfgov",
+      "artist": "eke",
+      "author": "Imanol Iñaki Aranzadi",
+      "title": "Tut",
+      "bpm": "233",
       "beats": {
         "accent": [
           0,
-          0,
-          0,
-          0,
-          0,
           1,
           1,
+          1,
+          0,
+          0,
+          0,
           0,
           0,
           0,
@@ -224,8 +224,30 @@
           0
         ]
       },
-      "genre": "House",
-      "description": "dkkal"
+      "genre": "R&B",
+      "description": "adf"
+    }
+  ],
+  "users": [
+    {
+      "id": "jqzsbf6i",
+      "googleId": "115305416276341237040",
+      "name": "Imanol Iñaki Aranzadi",
+      "email": "iiaranzadi@gmail.com",
+      "profileImageUrl": "https://lh5.googleusercontent.com/-Vzj9_9WcStM/AAAAAAAAAAI/AAAAAAABb7M/NjpcJnuT1QA/s96-c/photo.jpg",
+      "likes": [],
+      "beatsCreated": [],
+      "profileDescription": null
+    },
+    {
+      "id": "jqzsbxd6",
+      "googleId": "107487566459035142822",
+      "name": "Ukuta Dei",
+      "email": "ukutadei@gmail.com",
+      "profileImageUrl": "https://lh5.googleusercontent.com/-XGThPvGvQxg/AAAAAAAAAAI/AAAAAAAAAAA/AKxrwcZsOA-sYg0Br4G-r2Jcow8jykaADg/s96-c/photo.jpg",
+      "likes": [],
+      "beatsCreated": [],
+      "profileDescription": null
     }
   ]
 }

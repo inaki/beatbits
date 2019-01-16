@@ -23,7 +23,6 @@ const styles = theme => ({
 class BeatPattern extends Component {
     render() {
         const { beats, classes } = this.props;
-        console.log(beats)
         if (beats) {
             return (
                 <div>

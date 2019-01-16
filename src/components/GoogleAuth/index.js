@@ -47,7 +47,7 @@ class GoogleAuth extends Component {
         const { classes, handleClickOpen } = this.props;
         if (this.props.isSignedIn === null) {
             return null;
-        } else if (this.props.isSignedIn) {
+        } else if (this.props.isSignedIn) {    
             return <div>
                 <Fab color="primary" aria-label="Add" className={classes.fab} onClick={handleClickOpen}>
                     <AddIcon />
@@ -56,7 +56,7 @@ class GoogleAuth extends Component {
                     logout
                 </Button>
             </div>
-        } else {
+        } else { 
             return <Button onClick={this.onSignInClick} color="primary" className={classes.button}>
                 login
             </Button>
@@ -82,7 +82,8 @@ class GoogleAuth extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isSignedIn: state.auth.isSignedIn
+        isSignedIn: state.auth.isSignedIn,
+        users: state.fetchUsers
     }
 }
 

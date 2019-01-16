@@ -6,6 +6,8 @@ import beatPatternInputReducer from './beatPatternInputReducer';
 import authReducer from './authReducer';
 import updateBeatReducer from './updateBeatReducer';
 import postBeat from './postBeat';
+import manageUserReducer from './manageUserReducer';
+import fetchUsersReducer from './fetchUsersReducer';
 
 export default combineReducers({
     beats: beatsReducer,
@@ -14,5 +16,7 @@ export default combineReducers({
     beatPatternInput: beatPatternInputReducer,
     auth: authReducer,
     updateBeat: updateBeatReducer,
-    postBeat: postBeat
+    postBeat: postBeat,
+    manageUser: manageUserReducer,
+    fetchUsers: fetchUsersReducer
 });

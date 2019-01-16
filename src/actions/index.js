@@ -11,8 +11,11 @@ import {
     PUT_BEAT_PATTERN,
     BEAT_PATTERN_DATA_INPUT,
     SIGN_IN,
-    SIGN_OUT
+    SIGN_OUT,
+    ADD_USER
 } from './types';
+
+import uniqid from 'uniqid';
 
 export const fetchBeats = () => {
     return async dispatch => {
@@ -79,6 +82,27 @@ export const updateBeat = (beatPattern) => {
 };
 
 export const signIn = (userId) => {
+    beatsDatabase.get('/users').then(res => {
+        const user = res.data.find(user => user.googleId === userId);
+        //console.log(user.googleId !== userId)
+        // console.log(user.googleId)
+        // console.log(userId)
+        if (user === undefined) {
+            const profile = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+            console.log(profile.getName())
+            beatsDatabase.post('/users', {
+                "id": uniqid(),
+                "googleId": profile.getId(),
+                "name": profile.getName(),
+                "email": profile.getEmail(),
+                "profileImageUrl": profile.getImageUrl(),
+                "likes": [],
+                "beatsCreated": [],
+                "profileDescription": null
+            });
+        } 
+    }).then(res => console.log(res));
+
     return {
         type: SIGN_IN,
         payload: userId
@@ -88,5 +112,12 @@ export const signIn = (userId) => {
 export const signOut = () => {
     return {
         type: SIGN_OUT
+    };
+};
+
+export const addUser = (user) => {
+    return async dispatch => {
+        const response = await beatsDatabase.post('/users', user);
+        dispatch({type: ADD_USER, payload: response});
     };
 };

@@ -73,7 +73,7 @@ class DetailsDialog extends React.Component {
         const inputPayload = {
             "id": uniqid(),
             "artist": this.state.artist,
-            "author": "inaki",
+            "author": this.props.isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName() : null,
             "title": this.state.title,
             "bpm": this.state.bpm,
             "beats": this.props.beatsInput.beats,
@@ -117,7 +117,7 @@ class DetailsDialog extends React.Component {
     }
 
     render() {
-        const { classes, onClose, patternInput, postBeat, beatsInput, ...other } = this.props;
+        const { classes, onClose, patternInput, postBeat, beatsInput, isSignedIn, ...other } = this.props;
         const { validation } = this.state;
         return (
         <Dialog
@@ -269,7 +269,8 @@ DetailsDialog.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        beatsInput: state.beatPatternInput
+        beatsInput: state.beatPatternInput,
+        isSignedIn: state.auth.isSignedIn
     }
 }
 

@@ -1,6 +1,6 @@
 export const generateBeats = (tracks) => { 
     let beats = {};
-    tracks.map(beat => {
+    tracks.forEach(beat => {
         let newVal = beat.value;
         let newBeat = {[newVal]: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]};
         beats = {...beats, ...newBeat};
