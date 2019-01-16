@@ -23,18 +23,23 @@ const styles = theme => ({
 class BeatPattern extends Component {
     render() {
         const { beats, classes } = this.props;
-        return (
-            <div>
-                { Object.keys(beats).map( beat => {
-                    return(
-                        <div key={beat} className={classes.beatRow}>
-                            <span className={classes.trackTitle}>{beat} : </span>
-                            <BeatTrack steps={beats[beat]} /> 
-                        </div>
-                    );
-                })}
-            </div>
-        )
+        console.log(beats)
+        if (beats) {
+            return (
+                <div>
+                    { Object.keys(beats).map( beat => {
+                        return(
+                            <div key={beat} className={classes.beatRow}>
+                                <span className={classes.trackTitle}>{beat} : </span>
+                                <BeatTrack steps={beats[beat]} /> 
+                            </div>
+                        );
+                    })}
+                </div>
+            )
+        } else {
+            return null;
+        }
     }
 }
 

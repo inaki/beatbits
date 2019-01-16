@@ -48,7 +48,17 @@ class DetailsDialog extends React.Component {
         description: '',
         beats: [],
         bpm: '',
-        genre: ''
+        genre: '',
+        validation: {
+            idError: null,
+            artistError: null,
+            authorError: null,
+            titleError: null,
+            bpmError: null,
+            beatsError: null,
+            genreError: null,
+            descriptionError: null
+        }
     }
 
     handleClose = () => {
@@ -70,26 +80,36 @@ class DetailsDialog extends React.Component {
             "genre": this.state.genre,
             "description": this.state.description
         }
-        this.props.postBeat(inputPayload);
-        this.handleClose();
+        if (inputPayload.title.length < 2) {
+            this.setState({validation: {...this.state.validation, titleError: true}});
+        } else if (inputPayload.genre.length < 1) {
+            this.setState({validation: {...this.state.validation, genreError: true }});
+        } else if (inputPayload.artist.length < 2) {
+            this.setState({validation: {...this.state.validation, artistError: true}});
+        } else if (inputPayload.bpm.length < 2) {
+            this.setState({validation: {...this.state.validation, bpmError: true}});
+        } else {
+            this.props.postBeat(inputPayload);
+            this.handleClose();
+        }
     }
 
     handleInputs = (e) => {
         switch(e.target.name) {
             case 'title': 
-                this.setState({title: e.target.value});
+                this.setState({title: e.target.value, validation: {...this.state.validation, titleError: null}});
                 break;
             case 'artist': 
-                this.setState({artist: e.target.value});
+                this.setState({artist: e.target.value, validation: {...this.state.validation, artistError: null}});
                 break;
             case 'description': 
                 this.setState({description: e.target.value});
                 break;
             case 'bpm': 
-                this.setState({bpm: e.target.value});
+                this.setState({bpm: e.target.value, validation: {...this.state.validation, bpmError: null}});
                 break;
             case 'genre': 
-                this.setState({genre: e.target.value});
+                this.setState({genre: e.target.value, validation: {...this.state.validation, genreError: null}});
                 break;
             default:
                 return;
@@ -98,6 +118,7 @@ class DetailsDialog extends React.Component {
 
     render() {
         const { classes, onClose, patternInput, postBeat, beatsInput, ...other } = this.props;
+        const { validation } = this.state;
         return (
         <Dialog
             maxWidth={'sm'}
@@ -111,6 +132,8 @@ class DetailsDialog extends React.Component {
                 <Grid container>
                     <Grid item xs={6}>
                         <TextField
+                            error={validation.titleError}
+                            helperText={ validation.titleError ? "enter a beat title" : null}
                             label='title'
                             name='title'
                             placeholder='enter title of the beat'
@@ -128,6 +151,8 @@ class DetailsDialog extends React.Component {
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
+                            error={validation.genreError}
+                            helperText={ validation.genreError ? "choose a genre" : null}
                             label='select genre'
                             fullWidth={true}
                             id='outlined-select-genre'
@@ -158,6 +183,8 @@ class DetailsDialog extends React.Component {
                     </Grid>
                     <Grid item xs={9}>
                         <TextField
+                            error={validation.artistError}
+                            helperText={ validation.artistError ? "enter artist name" : null}
                             label='artist'
                             name='artist'
                             placeholder='artist'
@@ -176,6 +203,8 @@ class DetailsDialog extends React.Component {
                     </Grid>
                     <Grid item xs={3}>
                         <TextField
+                            error={validation.bpmError}
+                            helperText={ validation.bpmError ? "enter the bpm" : null}
                             label='bpm'
                             name='bpm'
                             placeholder='bpm'

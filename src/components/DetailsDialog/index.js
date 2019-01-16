@@ -5,7 +5,6 @@ import { patternInput, updateBeat } from '../../actions';
 
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   Button,
   Typography,
@@ -147,48 +146,6 @@ class DetailsDialog extends React.Component {
         maxWidth={'md'}
         fullWidth={true}
         className={classes.dialog} onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-          <DialogTitle id="simple-dialog-title">
-            <Grid container>
-              <Grid item xs={1}></Grid>
-              <Grid item xs={6}>
-                    { this.state.edit 
-                      ? <TextField
-                      label='title'
-                      name='title'
-                      placeholder='title'
-                      fullWidth={true}
-                      id='outlined-name'
-                      className={classes.textFieldTitle}
-                      value={this.state.title}
-                      type='text'
-                      onChange={this.handleInputs}
-                      margin='none'
-                      variant='outlined'
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      />
-                      : <Typography className={classes.title}>
-                          {selectedBeat.title }
-                        </Typography>
-                    }
-                </Grid>
-                <Grid item xs={3}>
-                  { this.state.edit
-                    ? <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
-                        Save
-                      </Button>
-                    : isSignedIn
-                      ? <Button onClick={this.handleEdit} color="primary" className={classes.editButton}>
-                        Edit
-                      </Button>  
-                      : null
-                  }
-                </Grid>
-              <Grid item xs={2}/>
-            </Grid>
-          </DialogTitle>
-
           <DialogContent>
             <Grid container>
               <Grid item xs={1}>
@@ -201,30 +158,30 @@ class DetailsDialog extends React.Component {
                     ? <BeatPatternInput showAbbr={false} existingBeats={selectedBeat}/>
                     : <BeatPatternExpanded edit={this.state.edit} selectedBeat={selectedBeat}/>
                   }
-                  { this.state.edit
-                    ? <TextField
-                        label='description'
-                        name='description'
-                        multiline
-                        placeholder='enter musical desciption'
-                        fullWidth={true}
-                        id='outlined-name'
-                        className={classes.textFieldDescription}
-                        value={this.state.description}
-                        onChange={this.handleInputs}
-                        margin='normal'
-                        variant='outlined'
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    /> 
-                    : <Typography className={classes.description} component="p">
-                        <span style={{display: 'block', color: 'black', fontSize: 18, marginBottom: 15}}>description</span>
-                        {selectedBeat.description}
-                      </Typography>
-                  }
               </Grid>
               <Grid item xs={3}>
+                    { this.state.edit 
+                      ? <TextField
+                          label='title'
+                          name='title'
+                          placeholder='title'
+                          fullWidth={true}
+                          id='outlined-name'
+                          className={classes.textFieldTitle}
+                          value={this.state.title}
+                          type='text'
+                          onChange={this.handleInputs}
+                          margin='none'
+                          variant='outlined'
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          />
+                      : <Typography className={classes.title}>
+                          {selectedBeat.title }
+                        </Typography>
+                    }
+
                     { this.state.edit 
                       ? <TextField
                       label='artist'
@@ -303,12 +260,42 @@ class DetailsDialog extends React.Component {
                         </Typography> 
                       
                     }
+
+                    { this.state.edit
+                      ? <TextField
+                          label='description'
+                          name='description'
+                          multiline
+                          placeholder='enter musical desciption'
+                          fullWidth={true}
+                          id='outlined-name'
+                          className={classes.textFieldDescription}
+                          value={this.state.description}
+                          onChange={this.handleInputs}
+                          margin='normal'
+                          variant='outlined'
+                          InputLabelProps={{
+                              shrink: true,
+                          }}
+                      /> 
+                      : <Typography className={classes.description} component="p">
+                          <span style={{display: 'block', color: 'black', fontSize: 18, marginBottom: 15}}>description</span>
+                          {selectedBeat.description}
+                        </Typography>
+                    }
+
+                    { this.state.edit
+                      ? <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
+                          Save
+                        </Button>
+                      : isSignedIn
+                        ? <Button onClick={this.handleEdit} color="primary" className={classes.editButton}>
+                          Edit
+                        </Button>  
+                        : null
+                    }
               </Grid>
-            </Grid>
-
-
-
-   
+            </Grid>   
           </DialogContent>
       
         
