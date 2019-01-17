@@ -10,7 +10,8 @@ const styles = theme => ({
         color: '#666',
         paddingTop: '5px',
         textAlign: 'left',
-        fontSize: '0.8rem'
+        fontSize: '0.8rem',
+        fontFamily: 'Arial'
     },
     beatRow: {
         width: '100%',

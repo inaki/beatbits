@@ -49,7 +49,7 @@ export const searchBeatSelect = (genre) => {
 export const searchBeatInput = (title) => {
     return {
         type: BEAT_SEARCH_BY_GENRE_INPUT,
-        payload: title
+        payload: title.toLowerCase()
     };
 };
 

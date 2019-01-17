@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectBeat, fetchBeats } from '../../actions';
+import { selectBeat, fetchBeats, fetchUsers } from '../../actions';
 
 import {Grid} from '@material-ui/core';
 
@@ -17,6 +17,7 @@ class BeatList extends Component {
     
     componentDidMount() {
         this.props.fetchBeats();
+        this.props.fetchUsers();
     }
       
     handleClickOpen = () => {
@@ -27,7 +28,7 @@ class BeatList extends Component {
         this.setState({ selectedValue: value, open: false });
     };
     
-    renderBeatList = (beats) => {
+    renderBeatList = (beats, users) => {
         return beats
             .filter( beat => {
                 if (this.props.beatsSearch !== null) {
@@ -50,6 +51,7 @@ class BeatList extends Component {
                         key={beat.id}
                         align="left">
                         <BeatCard
+                            user={users.find(user => user.id === beat.userId)}
                             handleSelect={() => {
                                 this.props.selectBeat(beat);
                                 this.handleClickOpen();
@@ -60,7 +62,7 @@ class BeatList extends Component {
             });   
     }
     render() {
-        const { selectedBeat, beats } = this.props;
+        const { selectedBeat, beats, users } = this.props;
         return (
             <div>
                 { selectedBeat && 
@@ -72,7 +74,7 @@ class BeatList extends Component {
                 />
                 }
                 <Grid container direction="column" align="center">
-                        { this.renderBeatList(beats)}
+                        { this.renderBeatList(beats, users)}
                 </Grid>
             </div>
         );
@@ -91,11 +93,13 @@ const mapStateToProps = (state) => {
     return {
         beats: state.beats,
         selectedBeat: state.selectedBeat,
-        beatsSearch: state.beatsSearch
+        beatsSearch: state.beatsSearch,
+        users: state.users
     };
 }
 
 export default connect(mapStateToProps, {
     selectBeat,
-    fetchBeats
+    fetchBeats,
+    fetchUsers
 })(BeatList);

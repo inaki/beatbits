@@ -20,6 +20,7 @@ const StepOn = styled.span`
         };
     color: white;
     text-overflow:ellipsis; 
+    font-family: 'Arial';
 `;
 
 const StepOff = styled.span`
@@ -33,6 +34,7 @@ const StepOff = styled.span`
     background: #f6f6f6;
     color: #a8a8a8;
     box-sizing: border-box;
+    font-family: 'Arial';
 `;
 
 

@@ -18,5 +18,5 @@ export default combineReducers({
     updateBeat: updateBeatReducer,
     postBeat: postBeat,
     manageUser: manageUserReducer,
-    fetchUsers: fetchUsersReducer
+    users: fetchUsersReducer
 });

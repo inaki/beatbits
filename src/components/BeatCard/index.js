@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -7,6 +7,8 @@ import {
   CardContent,
   Button,
   Typography,
+  Grid,
+  Avatar
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -17,6 +19,10 @@ const styles = {
     maxWidth: 600,
     margin: 10
   },
+  avatar: {
+    margin: 10,
+    display: 'inline-block'
+  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -24,42 +30,71 @@ const styles = {
   },
   title: {
     fontSize: 20,
-    color: '#666'
+    color: '#666',
+    textTransform: 'capitalize'
   },
   bpm: {
     color: '#666'
   },
   artist: {
-    color: '#666'
+    color: 'salmon',
+    textTransform: 'capitalize'
   },
   description: {
     color: '#666'
+  },
+  userName: {
+    display: 'inline-block',
+    top: '-25px',
+    position: 'relative'
+  },
+  infoWrapper: {
+    textAlign: 'right'
   }
 };
 
-function BeatCard(props) {
-  const { classes, title, bpm, beats, artist, handleSelect } = props;
-  return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography component="h1" className={classes.title} color="textSecondary" gutterBottom>
-          {title}
-        </Typography>
-        <Typography className={classes.artist} component="p">
-          artist: {artist}
-        </Typography>
-        <Typography className={classes.bpm} component="p">
-          bpm : {bpm}
-        </Typography>
-        <br/>
-        <BeatPattern beats={beats}/>
-        <br/>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={handleSelect}>Beat Details</Button>
-      </CardActions>
-    </Card>
-  );
+class BeatCard extends Component {
+  render () {
+    const { classes, title, bpm, genre, beats, artist, handleSelect, user } = this.props;
+    
+    return (
+      <Card className={classes.card}>
+        <CardContent>
+          <Grid container>
+            <Grid item xs={6}>
+              { user !== undefined 
+                  ? <Fragment>
+                      <Avatar alt="Remy Sharp" src={user.profileImageUrl} className={classes.avatar} />
+                      <Typography component="h1" className={classes.userName} color="textSecondary" gutterBottom>
+                        {user.name}
+                      </Typography>
+                    </Fragment>
+                  : null }
+                    
+            </Grid>
+            
+            <Grid item xs={6} className={classes.infoWrapper}>
+              <Typography component="h1" className={classes.title} color="textSecondary" gutterBottom>
+                {title}
+              </Typography>
+              <Typography alt='artist' className={classes.artist} component="p">
+                {artist}
+              </Typography>
+              <Typography className={classes.bpm} component="p">
+                {`bpm: ${bpm} \u00A0\u00A0\u00A0\ genre: ${genre} `}
+              </Typography>
+            </Grid>
+          </Grid>
+            <br/>
+            <BeatPattern beats={beats}/>
+            <br/>
+        </CardContent>
+        <CardActions>
+          <Button size="small" onClick={handleSelect}>Beat Details</Button>
+        </CardActions>
+      </Card>
+    );
+  }
 }
 
 BeatCard.propTypes = {
@@ -69,5 +104,11 @@ BeatCard.propTypes = {
   beats: PropTypes.object,
   handleSelect: PropTypes.func 
 };
+
+// const mapStateToProps = state => {
+//   return {
+//     user: 
+//   }
+// }
 
 export default withStyles(styles)(BeatCard);

@@ -73,12 +73,13 @@ class DetailsDialog extends React.Component {
         const inputPayload = {
             "id": uniqid(),
             "artist": this.state.artist,
-            "author": this.props.isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName() : null,
+            "author": window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName(),
             "title": this.state.title,
             "bpm": this.state.bpm,
             "beats": this.props.beatsInput.beats,
             "genre": this.state.genre,
             "description": this.state.description
+            // "userId": 
         }
         if (inputPayload.title.length < 2) {
             this.setState({validation: {...this.state.validation, titleError: true}});
