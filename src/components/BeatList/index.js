@@ -65,7 +65,7 @@ class BeatList extends Component {
             });   
     }
     render() {
-        const { selectedPattern, beats, users } = this.props;
+        const { selectedPattern, beats, users, isSignedIn } = this.props;
         return (
             <div>
                 { selectedPattern && 
@@ -84,7 +84,7 @@ class BeatList extends Component {
                     onClose={this.handleClose}/>
                 }
                 <Grid container direction="column" align="center">
-                    <Button onClick={this.handleAddingPatternClick}>add pattern</Button>
+                    { isSignedIn ? <Button onClick={this.handleAddingPatternClick}>add pattern</Button> : null }
                         { this.renderBeatList(beats, users)}
                 </Grid>
             </div>
@@ -103,6 +103,7 @@ BeatList.propTypes = {
 const mapStateToProps = (state) => {
     return {
         beats: state.beats,
+        isSignedIn: state.auth.isSignedIn,
         selectedPattern: state.selectedPattern,
         beatsSearch: state.beatsSearch,
         users: state.users

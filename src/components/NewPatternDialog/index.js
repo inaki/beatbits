@@ -62,6 +62,20 @@ const styles = theme => ({
   }
 });
 
+function clearValidation() {
+    return {
+        idError: null,
+        artistError: null,
+        authorError: null,
+        titleError: null,
+        bpmError: null,
+        beatsError: null,
+        genreError: null,
+        descriptionError: null,
+        patternError: null
+    }
+}
+
 class DetailsDialog extends React.Component {
   
   state = {
@@ -81,7 +95,8 @@ class DetailsDialog extends React.Component {
         bpmError: null,
         beatsError: null,
         genreError: null,
-        descriptionError: null
+        descriptionError: null,
+        patternError: null
     }
   }
 
@@ -96,20 +111,20 @@ class DetailsDialog extends React.Component {
         this.setState({
             "id": this.props.selectedPattern.id,
             "artist": this.props.selectedPattern.artist,
-            "author": window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName(),
+            "author": this.props.isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName() : null,
             "title": this.props.selectedPattern.title,
             "bpm": this.props.selectedPattern.bpm,
             "beats": this.props.beatsInput.beats,
             "genre": this.props.selectedPattern.genre,
-            "description": this.props.selectedPattern.description
-            // "userId": 
+            "description": this.props.selectedPattern.description,
+            "userId": this.props.selectedPattern.userId
         });
         console.log('details now from CDM')
     }
   }
 
   handleClose = () => {
-    this.setState({addingPattern: false});
+    this.setState({addingPattern: false, editingPattern: false});
     this.props.onClose();
   };
 
@@ -137,6 +152,8 @@ class DetailsDialog extends React.Component {
         this.setState({validation: {...this.state.validation, genreError: true }});
     } else if (inputPayload.bpm.length < 2) {
         this.setState({validation: {...this.state.validation, bpmError: true}});
+    } else if (inputPayload.beats === undefined) {
+        this.setState({validation: {...this.state.validation, patternError: true}});
     } else {
         if(this.props.selectedPattern) {
             const editPayload = {
@@ -150,9 +167,11 @@ class DetailsDialog extends React.Component {
                 "description": this.state.description,
                 "userId": this.props.selectedPattern.userId
             }
+            this.setState({validation: {...clearValidation()}})
             this.props.updateBeat(editPayload);
             this.handleClose();
         } else {
+            this.setState({validation: {...clearValidation()}})
             this.props.postPattern(inputPayload);
             this.handleClose();
         }
@@ -161,9 +180,18 @@ class DetailsDialog extends React.Component {
 
     handleEditClick = () => {
         if (this.props.selectedPattern) {
-            console.log(this.props.selectedPattern)
+            // console.log(this.props.selectedPattern)
             this.setState({
-                editingPattern: true
+                editingPattern: true,
+                id: this.props.selectedPattern.id,
+                artist: this.props.selectedPattern.artist,
+                author: this.props.isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName() : null,
+                title: this.props.selectedPattern.title,
+                bpm: this.props.selectedPattern.bpm,
+                beats: this.props.beatsInput.beats,
+                genre: this.props.selectedPattern.genre,
+                description: this.props.selectedPattern.description,
+                userId: this.props.selectedPattern.userId
             });
         }
     }
@@ -193,7 +221,8 @@ class DetailsDialog extends React.Component {
   render() {
     const { classes, updateBeat, onClose, selectedValue, isSignedIn, selectedPattern, beatsInput, patternInput, postPattern, ...other } = this.props;
     const { validation } = this.state;
-    
+    const googleId = isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId() : null;
+    console.log(this.state)
     return (
       <Dialog
         maxWidth={'md'}
@@ -211,6 +240,7 @@ class DetailsDialog extends React.Component {
                     canEdit={this.state.addingPattern || this.state.editingPattern ? true : false}
                     showAbbr={false}
                     existingBeats={!this.state.addingPattern || this.state.edit ? selectedPattern : null}/>
+                { this.state.validation.patternError ? <Typography>You must so enter some beat patterns...</Typography> : null }
               </Grid>
               <Grid item xs={3}>
                     { this.state.addingPattern || this.state.editingPattern
@@ -343,14 +373,28 @@ class DetailsDialog extends React.Component {
                       </Typography>
                     }
 
-                    { this.state.addingPattern || this.state.editingPattern
-                    ? <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
+                    
+                    {
+                        isSignedIn && this.state.editingPattern &&
+                        <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
                             Save
                         </Button>
-                    : <Button onClick={this.handleEditClick} color="primary" className={classes.editButton}>
+                    }
+
+                    {
+                        isSignedIn && this.state.addingPattern &&
+                        <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
+                            Save
+                        </Button>
+                    }
+
+                    
+                    { isSignedIn && selectedPattern !== null && selectedPattern.userId === googleId && !this.state.editingPattern &&
+                        <Button onClick={this.handleEditClick} color="primary" className={classes.editButton}>
                             Edit
                         </Button>
                     }
+                    
                    
               </Grid>
             </Grid>   
