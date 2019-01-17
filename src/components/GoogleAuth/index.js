@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../../actions';
 import { GoogleKeys } from '../../env.js';
-import { Button, Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import { Button } from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -44,14 +43,11 @@ class GoogleAuth extends Component {
     }
 
     renderAuthButton() {
-        const { classes, handleClickOpen } = this.props;
+        const { classes } = this.props;
         if (this.props.isSignedIn === null) {
             return null;
         } else if (this.props.isSignedIn) {    
             return <div>
-                <Fab color="primary" aria-label="Add" className={classes.fab} onClick={handleClickOpen}>
-                    <AddIcon />
-                </Fab>
                 <Button onClick={this.onSignOutClick} color="primary" className={classes.button}>
                     logout
                 </Button>

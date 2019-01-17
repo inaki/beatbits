@@ -81,7 +81,7 @@ class BeatCard extends Component {
                 {artist}
               </Typography>
               <Typography className={classes.bpm} component="p">
-                {`bpm: ${bpm} \u00A0\u00A0\u00A0\ genre: ${genre} `}
+                {`bpm: ${bpm} \u00A0\u00A0\u00A0 genre: ${genre} `}
               </Typography>
             </Grid>
           </Grid>

@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectBeat, fetchBeats, fetchUsers } from '../../actions';
-
-import {Grid} from '@material-ui/core';
-
-import DetailsDialog from '../DetailsDialog';
+import {Grid, Button} from '@material-ui/core';
+import NewPatternDialog from '../NewPatternDialog';
 import BeatCard from '../BeatCard';
 
 class BeatList extends Component {
 
     state = {
         open: false,
+        addingNewPatternOpen: false,
         beats: []
       };
     
@@ -24,8 +23,12 @@ class BeatList extends Component {
         this.setState({open: true});
     };
 
+    handleAddingPatternClick = () => {
+        this.setState({addingNewPatternOpen: true});
+    };
+
     handleClose = value => {
-        this.setState({ selectedValue: value, open: false });
+        this.setState({ selectedValue: value, addingNewPatternOpen: false, open: false });
     };
     
     renderBeatList = (beats, users) => {
@@ -62,18 +65,26 @@ class BeatList extends Component {
             });   
     }
     render() {
-        const { selectedBeat, beats, users } = this.props;
+        const { selectedPattern, beats, users } = this.props;
         return (
             <div>
-                { selectedBeat && 
-                    <DetailsDialog
-                    selectedBeat={selectedBeat}
+                { selectedPattern && 
+                    <NewPatternDialog
+                    selectedPattern={selectedPattern}
                     selectedValue={this.state.selectedValue}
                     open={this.state.open}
                     onClose={this.handleClose}
                 />
                 }
+
+                {  this.state.addingNewPatternOpen &&
+                    <NewPatternDialog 
+                    adding='true'
+                    open={this.state.addingNewPatternOpen}
+                    onClose={this.handleClose}/>
+                }
                 <Grid container direction="column" align="center">
+                    <Button onClick={this.handleAddingPatternClick}>add pattern</Button>
                         { this.renderBeatList(beats, users)}
                 </Grid>
             </div>
@@ -82,7 +93,7 @@ class BeatList extends Component {
 }
 
 BeatList.propTypes = {
-    selectedBeat: PropTypes.object,
+    selectedPattern: PropTypes.object,
     beats: PropTypes.array,
     beatsSearch: PropTypes.object,
     selectBeat: PropTypes.func,
@@ -92,7 +103,7 @@ BeatList.propTypes = {
 const mapStateToProps = (state) => {
     return {
         beats: state.beats,
-        selectedBeat: state.selectedBeat,
+        selectedPattern: state.selectedPattern,
         beatsSearch: state.beatsSearch,
         users: state.users
     };

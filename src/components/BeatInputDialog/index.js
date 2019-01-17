@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { patternInput, postBeat } from '../../actions'
+import { patternInput, postPattern } from '../../actions'
 import uniqid from 'uniqid';
 
 import { genres } from '../../utils/variables';
@@ -90,7 +90,7 @@ class DetailsDialog extends React.Component {
         } else if (inputPayload.bpm.length < 2) {
             this.setState({validation: {...this.state.validation, bpmError: true}});
         } else {
-            this.props.postBeat(inputPayload);
+            this.props.postPattern(inputPayload);
             this.handleClose();
         }
     }
@@ -118,7 +118,7 @@ class DetailsDialog extends React.Component {
     }
 
     render() {
-        const { classes, onClose, patternInput, postBeat, beatsInput, isSignedIn, ...other } = this.props;
+        const { classes, onClose, patternInput, postPattern, beatsInput, isSignedIn, ...other } = this.props;
         const { validation } = this.state;
         return (
         <Dialog
@@ -264,7 +264,7 @@ DetailsDialog.propTypes = {
   onClose: PropTypes.func,
   selectedValue: PropTypes.string,
   patternInput: PropTypes.func,
-  postBeat: PropTypes.func,
+  postPattern: PropTypes.func,
   beatsInput: PropTypes.object
 };
 
@@ -277,6 +277,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     patternInput,
-    postBeat
+    postPattern
 })(withStyles(styles)(DetailsDialog));
  

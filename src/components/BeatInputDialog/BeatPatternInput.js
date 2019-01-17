@@ -31,6 +31,7 @@ class BeatPatternInput extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         const newBeatsPatterns = generateBeats(tracks);
         if (this.props.existingBeats) {
             this.setState({...this.state.beats, ...this.props.existingBeats});
@@ -40,10 +41,14 @@ class BeatPatternInput extends Component {
     }
 
     handleClickStep = (step, track) => {
-        const newSteps = this.state.beats[track];
-        newSteps[step] = newSteps[step] === 0 ? 1 : 0;
-        this.setState({steps: {...this.state.beats, ...this.state.beats[track]}});
-        this.props.getBeatInput({beats: this.state.beats});
+        if (this.props.canEdit) {
+            const newSteps = this.state.beats[track];
+            newSteps[step] = newSteps[step] === 0 ? 1 : 0;
+            this.setState({steps: {...this.state.beats, ...this.state.beats[track]}});
+            this.props.getBeatInput({beats: this.state.beats});
+        } else {
+            return;
+        }
     }
 
     render() {

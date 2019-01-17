@@ -5,18 +5,18 @@ import beatsSearchReducer from './beatsSearchReducer';
 import beatPatternInputReducer from './beatPatternInputReducer';
 import authReducer from './authReducer';
 import updateBeatReducer from './updateBeatReducer';
-import postBeat from './postBeat';
+import postPatternReducer from './postPatternReducer';
 import manageUserReducer from './manageUserReducer';
 import fetchUsersReducer from './fetchUsersReducer';
 
 export default combineReducers({
     beats: beatsReducer,
-    selectedBeat: selectedBeatReducer,
+    selectedPattern: selectedBeatReducer,
     beatsSearch: beatsSearchReducer,
     beatPatternInput: beatPatternInputReducer,
     auth: authReducer,
     updateBeat: updateBeatReducer,
-    postBeat: postBeat,
+    postPattern: postPatternReducer,
     manageUser: manageUserReducer,
     users: fetchUsersReducer
 });

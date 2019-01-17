@@ -67,7 +67,7 @@ export const getBeatInput = (beats) => {
     };
 };
 
-export const postBeat = (beatPattern) => {
+export const postPattern = (beatPattern) => {
     return async dispatch => {
         const response = await beatsDatabase.post('/beatsDatabase', beatPattern);
         dispatch({type: POST_BEAT_PATTERN, payload: response});
