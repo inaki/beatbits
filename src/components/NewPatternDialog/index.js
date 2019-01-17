@@ -7,6 +7,7 @@ import { patternInput, postPattern, updateBeat } from '../../actions';
 import {
   Dialog,
   DialogContent,
+  DialogActions,
   Button,
   Typography,
   Grid,
@@ -24,9 +25,7 @@ const styles = theme => ({
   title: {
     fontSize: '2rem'
   },
-  description: {
-    margin: '20px 0'
-  },
+  description: {},
   bpm: {
     color: '#666',
     margin: '20px 0'
@@ -40,16 +39,14 @@ const styles = theme => ({
   },
   textFieldBpm: {},  
   textFieldArtist: {},
-  textFieldDescription: {
-    paddingRight: '40px'
-  },
+  textFieldDescription: {},
   editButton: {
     height: 40,
     marginTop: 7,
     width: 116
   },
   trackNamesWrapper: {
-    height: 295,
+    height: 403,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -102,7 +99,6 @@ class DetailsDialog extends React.Component {
 
   componentDidMount() {
     if(this.props.adding) {
-        console.log('adding now from CDM')
         this.setState({
             beats: generateBeats(tracks),
             addingPattern: this.props.adding ? true : false
@@ -119,7 +115,6 @@ class DetailsDialog extends React.Component {
             "description": this.props.selectedPattern.description,
             "userId": this.props.selectedPattern.userId
         });
-        console.log('details now from CDM')
     }
   }
 
@@ -152,7 +147,7 @@ class DetailsDialog extends React.Component {
         this.setState({validation: {...this.state.validation, genreError: true }});
     } else if (inputPayload.bpm.length < 2) {
         this.setState({validation: {...this.state.validation, bpmError: true}});
-    } else if (inputPayload.beats === undefined) {
+    } else if (inputPayload.beats === undefined && this.state.addingPattern) {
         this.setState({validation: {...this.state.validation, patternError: true}});
     } else {
         if(this.props.selectedPattern) {
@@ -167,7 +162,7 @@ class DetailsDialog extends React.Component {
                 "description": this.state.description,
                 "userId": this.props.selectedPattern.userId
             }
-            this.setState({validation: {...clearValidation()}})
+            this.setState({validation: {...clearValidation()}});
             this.props.updateBeat(editPayload);
             this.handleClose();
         } else {
@@ -188,7 +183,7 @@ class DetailsDialog extends React.Component {
                 author: this.props.isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName() : null,
                 title: this.props.selectedPattern.title,
                 bpm: this.props.selectedPattern.bpm,
-                beats: this.props.beatsInput.beats,
+                beats: {...this.props.beatsInput.beats, ...this.props.selectedPattern.beats},
                 genre: this.props.selectedPattern.genre,
                 description: this.props.selectedPattern.description,
                 userId: this.props.selectedPattern.userId
@@ -222,7 +217,7 @@ class DetailsDialog extends React.Component {
     const { classes, updateBeat, onClose, selectedValue, isSignedIn, selectedPattern, beatsInput, patternInput, postPattern, ...other } = this.props;
     const { validation } = this.state;
     const googleId = isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId() : null;
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Dialog
         maxWidth={'md'}
@@ -371,36 +366,37 @@ class DetailsDialog extends React.Component {
                     : <Typography className={classes.description}>
                         { selectedPattern ? selectedPattern.description : null }
                       </Typography>
-                    }
-
-                    
-                    {
-                        isSignedIn && this.state.editingPattern &&
-                        <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
-                            Save
-                        </Button>
-                    }
-
-                    {
-                        isSignedIn && this.state.addingPattern &&
-                        <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
-                            Save
-                        </Button>
-                    }
-
-                    
-                    { isSignedIn && selectedPattern !== null && selectedPattern.userId === googleId && !this.state.editingPattern &&
-                        <Button onClick={this.handleEditClick} color="primary" className={classes.editButton}>
-                            Edit
-                        </Button>
-                    }
-                    
+                    }                
                    
               </Grid>
-            </Grid>   
+            </Grid>  
           </DialogContent>
       
-        
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary" className={classes.editButton}>
+                { isSignedIn ? 'Cancel' : 'Close' }
+            </Button>
+            {
+                isSignedIn && this.state.editingPattern &&
+                <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
+                    Save
+                </Button>
+            }
+
+            {
+                isSignedIn && this.state.addingPattern &&
+                <Button onClick={this.handleSubmit} color="primary" className={classes.editButton}>
+                    Save
+                </Button>
+            }
+
+            
+            { isSignedIn && selectedPattern !== null && selectedPattern.userId === googleId && !this.state.editingPattern &&
+                <Button onClick={this.handleEditClick} color="primary" className={classes.editButton}>
+                    Edit
+                </Button>
+            } 
+          </DialogActions>
       </Dialog>
     );
   }

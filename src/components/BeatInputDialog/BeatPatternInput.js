@@ -18,9 +18,8 @@ const styles = {
         minWidth: 620
     },
     trackName: {
-        padding: '4px 2px',
         fontFamily: 'Arial',
-        color: 'grey'
+        color: 'grey',
     },
     trackPattern: {}
 }
@@ -31,7 +30,6 @@ class BeatPatternInput extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         const newBeatsPatterns = generateBeats(tracks);
         if (this.props.existingBeats) {
             this.setState({...this.state.beats, ...this.props.existingBeats});
