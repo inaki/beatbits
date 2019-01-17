@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uniqid from 'uniqid';
-import { patternInput, postPattern } from '../../actions';
+import { patternInput, postPattern, updateBeat } from '../../actions';
 
 import {
   Dialog,
@@ -126,8 +126,8 @@ class DetailsDialog extends React.Component {
         "bpm": this.state.bpm,
         "beats": this.props.beatsInput.beats,
         "genre": this.state.genre,
-        "description": this.state.description
-        // "userId": 
+        "description": this.state.description,
+        "userId": window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId()
     }
     if (inputPayload.title.length < 2) {
         this.setState({validation: {...this.state.validation, titleError: true}});
@@ -138,8 +138,24 @@ class DetailsDialog extends React.Component {
     } else if (inputPayload.bpm.length < 2) {
         this.setState({validation: {...this.state.validation, bpmError: true}});
     } else {
-        this.props.postPattern(inputPayload);
-        this.handleClose();
+        if(this.props.selectedPattern) {
+            const editPayload = {
+                "id": this.props.selectedPattern.id,
+                "artist": this.state.artist,
+                "author": window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName(),
+                "title": this.state.title,
+                "bpm": this.state.bpm,
+                "beats": {...this.props.beatsInput.beats, ...this.props.selectedPattern.beats},
+                "genre": this.state.genre,
+                "description": this.state.description,
+                "userId": this.props.selectedPattern.userId
+            }
+            this.props.updateBeat(editPayload);
+            this.handleClose();
+        } else {
+            this.props.postPattern(inputPayload);
+            this.handleClose();
+        }
     }
 }
 
@@ -175,7 +191,7 @@ class DetailsDialog extends React.Component {
     }
 
   render() {
-    const { classes, onClose, selectedValue, isSignedIn, selectedPattern, beatsInput, patternInput, postPattern, ...other } = this.props;
+    const { classes, updateBeat, onClose, selectedValue, isSignedIn, selectedPattern, beatsInput, patternInput, postPattern, ...other } = this.props;
     const { validation } = this.state;
     
     return (
@@ -363,5 +379,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   patternInput,
-  postPattern
+  postPattern,
+  updateBeat
 })(withStyles(styles)(DetailsDialog));
