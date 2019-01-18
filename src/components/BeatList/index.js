@@ -54,7 +54,7 @@ class BeatList extends Component {
                         key={beat.id}
                         align="left">
                         <BeatCard
-                            user={users.find(user => user.id === beat.email)}
+                            user={users.find(user => user.email === beat.email)}
                             handleSelect={() => {
                                 this.props.selectBeat(beat);
                                 this.handleClickOpen();
