@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uniqid from 'uniqid';
-import { patternInput, postPattern, updateBeat } from '../../actions';
+import { patternInput, postPattern, updateBeat, deletePattern } from '../../actions';
 
 import {
   Dialog,
@@ -22,6 +22,7 @@ import { generateBeats } from '../../utils/helpers';
 
 const styles = theme => ({
   dialog: {},
+  deleteBtn: {color: 'red'},
   title: {
     fontSize: '2rem'
   },
@@ -113,7 +114,7 @@ class DetailsDialog extends React.Component {
             "beats": this.props.beatsInput.beats,
             "genre": this.props.selectedPattern.genre,
             "description": this.props.selectedPattern.description,
-            "userId": this.props.selectedPattern.userId
+            "email": this.props.selectedPattern.email
         });
     }
   }
@@ -137,7 +138,7 @@ class DetailsDialog extends React.Component {
         "beats": this.props.beatsInput.beats,
         "genre": this.state.genre,
         "description": this.state.description,
-        "userId": window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId()
+        "email": window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail()
     }
     if (inputPayload.title.length < 2) {
         this.setState({validation: {...this.state.validation, titleError: true}});
@@ -160,7 +161,7 @@ class DetailsDialog extends React.Component {
                 "beats": {...this.props.beatsInput.beats, ...this.props.selectedPattern.beats},
                 "genre": this.state.genre,
                 "description": this.state.description,
-                "userId": this.props.selectedPattern.userId
+                "email": this.props.selectedPattern.email
             }
             this.setState({validation: {...clearValidation()}});
             this.props.updateBeat(editPayload);
@@ -172,6 +173,11 @@ class DetailsDialog extends React.Component {
         }
     }
 }
+
+    handleDeleteClick = (id) => {
+        this.props.deletePattern(id);
+        this.handleClose();
+    }
 
     handleEditClick = () => {
         if (this.props.selectedPattern) {
@@ -186,7 +192,7 @@ class DetailsDialog extends React.Component {
                 beats: {...this.props.beatsInput.beats, ...this.props.selectedPattern.beats},
                 genre: this.props.selectedPattern.genre,
                 description: this.props.selectedPattern.description,
-                userId: this.props.selectedPattern.userId
+                email: this.props.selectedPattern.email
             });
         }
     }
@@ -214,10 +220,10 @@ class DetailsDialog extends React.Component {
     }
 
   render() {
-    const { classes, updateBeat, onClose, selectedValue, isSignedIn, selectedPattern, beatsInput, patternInput, postPattern, ...other } = this.props;
+    const { classes, patterns, updateBeat, onClose, deletePattern, selectedValue, isSignedIn, selectedPattern, beatsInput, patternInput, postPattern, ...other } = this.props;
     const { validation } = this.state;
-    const googleId = isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId() : null;
-    // console.log(this.state)
+    const googleEmail = isSignedIn ? window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail() : null;
+    
     return (
       <Dialog
         maxWidth={'md'}
@@ -282,7 +288,7 @@ class DetailsDialog extends React.Component {
                             }}
                         />
                     : <Typography className={classes.artist}>
-                        { selectedPattern ? selectedPattern.artist : null }
+                        artist: { selectedPattern ? selectedPattern.artist : null }
                       </Typography>
                     }
 
@@ -318,7 +324,7 @@ class DetailsDialog extends React.Component {
                         ))}
                     </TextField>
                     : <Typography className={classes.genre}>
-                        { selectedPattern ? selectedPattern.genre : null }
+                        genre: { selectedPattern ? selectedPattern.genre : null }
                       </Typography>
                     }
 
@@ -342,7 +348,7 @@ class DetailsDialog extends React.Component {
                         }}
                     />
                     : <Typography className={classes.bpm}>
-                        { selectedPattern ? selectedPattern.bpm : null }
+                        bpm: { selectedPattern ? selectedPattern.bpm : null }
                       </Typography>
                     }
 
@@ -373,6 +379,13 @@ class DetailsDialog extends React.Component {
           </DialogContent>
       
           <DialogActions>
+            <Grid container>
+            { isSignedIn && selectedPattern !== null && selectedPattern.email === googleEmail && 
+                    <Grid item xs={2}>
+                        <Button onClick={() => this.handleDeleteClick(selectedPattern.id)} className={classes.deleteBtn}>Delete</Button>
+                    </Grid>
+            }
+            </Grid>
             <Button onClick={this.handleClose} color="primary" className={classes.editButton}>
                 { isSignedIn ? 'Cancel' : 'Close' }
             </Button>
@@ -391,7 +404,7 @@ class DetailsDialog extends React.Component {
             }
 
             
-            { isSignedIn && selectedPattern !== null && selectedPattern.userId === googleId && !this.state.editingPattern &&
+            { isSignedIn && selectedPattern !== null && selectedPattern.email === googleEmail && !this.state.editingPattern &&
                 <Button onClick={this.handleEditClick} color="primary" className={classes.editButton}>
                     Edit
                 </Button>
@@ -411,6 +424,8 @@ DetailsDialog.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+      beats: state.beats,
+      patterns: state.beats,
       beatsInput: state.beatPatternInput,
       isSignedIn: state.auth.isSignedIn,
       selectedPattern: state.selectedPattern
@@ -420,5 +435,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   patternInput,
   postPattern,
-  updateBeat
+  updateBeat,
+  deletePattern
 })(withStyles(styles)(DetailsDialog));

@@ -12,12 +12,7 @@ const StepOn = styled.div`
     padding-top: 6px;
     text-align: center;
     box-sizing: border-box;
-    background: ${ props => props.stepNumber < 4 
-        ? "#C62828" 
-        : props.stepNumber < 9 
-            ? "#E53935" 
-            : props.stepNumber < 13 ? "#EF5350" : "#EF9A9A"
-        };
+    background: #C62828;
     color: white;
     text-overflow:ellipsis; 
 `;

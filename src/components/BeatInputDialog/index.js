@@ -78,8 +78,8 @@ class DetailsDialog extends React.Component {
             "bpm": this.state.bpm,
             "beats": this.props.beatsInput.beats,
             "genre": this.state.genre,
-            "description": this.state.description
-            // "userId": 
+            "description": this.state.description,
+            "email": window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail()
         }
         if (inputPayload.title.length < 2) {
             this.setState({validation: {...this.state.validation, titleError: true}});

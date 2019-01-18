@@ -8,6 +8,7 @@ import updateBeatReducer from './updateBeatReducer';
 import postPatternReducer from './postPatternReducer';
 import manageUserReducer from './manageUserReducer';
 import fetchUsersReducer from './fetchUsersReducer';
+import deletePatternReducer from './deletePatternReducer';
 
 export default combineReducers({
     beats: beatsReducer,
@@ -16,6 +17,7 @@ export default combineReducers({
     beatPatternInput: beatPatternInputReducer,
     auth: authReducer,
     updateBeat: updateBeatReducer,
+    deletePattern: deletePatternReducer,
     postPattern: postPatternReducer,
     manageUser: manageUserReducer,
     users: fetchUsersReducer

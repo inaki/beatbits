@@ -10,3 +10,4 @@ export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 export const PUT_BEAT_PATTERN = 'PUT_BEAT_PATTERN';
 export const ADD_USER = 'ADD_USER';
+export const DELETE_BEAT_PATTERN = 'DELETE_BEAT_PATTERN';

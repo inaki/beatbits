@@ -9,6 +9,7 @@ import {
     GET_BEAT_INPUT,
     POST_BEAT_PATTERN,
     PUT_BEAT_PATTERN,
+    DELETE_BEAT_PATTERN,
     BEAT_PATTERN_DATA_INPUT,
     SIGN_IN,
     SIGN_OUT,
@@ -67,29 +68,27 @@ export const getBeatInput = (beats) => {
     };
 };
 
-export const postPattern = (beatPattern) => {
-    return async dispatch => {
+export const postPattern = beatPattern => async dispatch => {
         const response = await beatsDatabase.post('/beatsDatabase', beatPattern);
         dispatch({type: POST_BEAT_PATTERN, payload: response});
-    };
 };
 
-export const updateBeat = (beatPattern) => {
-    return async dispatch => {
+export const updateBeat = beatPattern => async dispatch => {
         const response = await beatsDatabase.put(`/beatsDatabase/${beatPattern.id}`, beatPattern);
         dispatch({type: PUT_BEAT_PATTERN, payload: response});
-    };
 };
 
-export const signIn = (userId) => {
+export const deletePattern = id => async dispatch => {
+        await beatsDatabase.delete(`/beatsDatabase/${id}`);
+        dispatch({type: DELETE_BEAT_PATTERN, payload: id});
+};
+
+export const signIn = (email) => {
+    
     beatsDatabase.get('/users').then(res => {
-        const user = res.data.find(user => user.googleId === userId);
-        //console.log(user.googleId !== userId)
-        // console.log(user.googleId)
-        // console.log(userId)
+        const user = res.data.find(user => user.email === email);
         if (user === undefined) {
             const profile = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-            console.log(profile.getName())
             beatsDatabase.post('/users', {
                 "id": uniqid(),
                 "googleId": profile.getId(),
@@ -105,7 +104,7 @@ export const signIn = (userId) => {
 
     return {
         type: SIGN_IN,
-        payload: userId
+        payload: email
     };
 };
 
