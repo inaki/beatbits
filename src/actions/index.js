@@ -70,12 +70,12 @@ export const getBeatInput = (beats) => {
 
 export const postPattern = beatPattern => async dispatch => {
         const response = await beatsDatabase.post('/beatsDatabase', beatPattern);
-        dispatch({type: POST_BEAT_PATTERN, payload: response});
+        dispatch({type: POST_BEAT_PATTERN, payload: response.data});
 };
 
 export const updateBeat = beatPattern => async dispatch => {
         const response = await beatsDatabase.put(`/beatsDatabase/${beatPattern.id}`, beatPattern);
-        dispatch({type: PUT_BEAT_PATTERN, payload: response});
+        dispatch({type: PUT_BEAT_PATTERN, payload: response.data});
 };
 
 export const deletePattern = id => async dispatch => {
