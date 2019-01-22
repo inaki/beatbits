@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectBeat, fetchBeats, fetchUsers } from '../../actions';
 import {Grid, Button} from '@material-ui/core';
-import NewPatternDialog from '../NewPatternDialog';
+import PatternDialog from '../PatternDialog';
 import BeatCard from '../BeatCard';
 
 class BeatList extends Component {
@@ -69,7 +69,7 @@ class BeatList extends Component {
         return (
             <div>
                 { selectedPattern && 
-                    <NewPatternDialog
+                    <PatternDialog
                     selectedPattern={selectedPattern}
                     selectedValue={this.state.selectedValue}
                     open={this.state.open}
@@ -78,7 +78,7 @@ class BeatList extends Component {
                 }
 
                 {  this.state.addingNewPatternOpen &&
-                    <NewPatternDialog 
+                    <PatternDialog 
                     adding='true'
                     open={this.state.addingNewPatternOpen}
                     onClose={this.handleClose}/>
