@@ -20,8 +20,7 @@ const styles = {
     trackName: {
         fontFamily: 'Arial',
         color: 'grey',
-    },
-    trackPattern: {}
+    }
 }
 
 class BeatPatternInput extends Component {
@@ -61,9 +60,9 @@ class BeatPatternInput extends Component {
                                     ? <Grid item xs={1} className={classes.trackName}>{tracks[index].abbr}</Grid>
                                     : null
                                 }
-                                <Grid item xs={11} className={classes.trackPattern}>
+                                <Grid item xs={11}>
                                     <BeatTrackInput track={beat} clickStep={this.handleClickStep} steps={this.state.beats[beat]}/>
-                                </Grid>
+                                </Grid>                            
                             </Grid>
                         )
                     })

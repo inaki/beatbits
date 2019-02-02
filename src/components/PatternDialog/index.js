@@ -237,11 +237,13 @@ class DetailsDialog extends React.Component {
                   </div>
               </Grid>
               <Grid item xs={8}>
-                <BeatPatternInput 
-                    canEdit={this.state.addingPattern || this.state.editingPattern ? true : false}
-                    showAbbr={false}
-                    existingBeats={!this.state.addingPattern || this.state.edit ? selectedPattern : null}/>
-                { this.state.validation.patternError ? <Typography>You must so enter some beat patterns...</Typography> : null }
+                <span style={{borderTop: this.state.editingPattern ? '1px dashed #ccc' : '', borderBottom: this.state.editingPattern ? '1px dashed #ccc' : '', display: 'inline-block', maxWidth: 560}}> 
+                    <BeatPatternInput 
+                        canEdit={this.state.addingPattern || this.state.editingPattern ? true : false}
+                        showAbbr={false}
+                        existingBeats={!this.state.addingPattern || this.state.edit ? selectedPattern : null}/>
+                    { this.state.validation.patternError ? <Typography>You must so enter some beat patterns...</Typography> : null }
+                </span>
               </Grid>
               <Grid item xs={3}>
                     { this.state.addingPattern || this.state.editingPattern

@@ -232,7 +232,7 @@
       "id": "jr0zuot5",
       "artist": "Blanca",
       "author": "Imanol Iñaki Aranzadi",
-      "title": "Ricky Martin",
+      "title": "Roberto",
       "bpm": "114",
       "beats": {
         "accent": [
@@ -346,17 +346,17 @@
         "rimshot": [
           0,
           0,
+          1,
           0,
           0,
-          0,
-          0,
+          1,
           0,
           0,
           0,
           0,
           0,
           1,
-          0,
+          1,
           0,
           0,
           0

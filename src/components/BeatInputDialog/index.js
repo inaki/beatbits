@@ -241,7 +241,9 @@ class DetailsDialog extends React.Component {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <BeatPatternInput />
+                        <span style={{border: '1px dashed pink', display: 'inline-block'}}> 
+                            <BeatPatternInput />
+                        </span>
                     </Grid>
                 </Grid>
             </DialogContent>

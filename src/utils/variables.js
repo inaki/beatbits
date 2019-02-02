@@ -17,10 +17,11 @@ export const tracks = [
     {value: 'closed hi hat', abbr: 'CH'},
     {value: 'cowbell', abbr: 'CB'},
     {value: 'claps', abbr: 'CPL'},
-    {value: 'rimshot', abbr: 'CPL'},
+    {value: 'rimshot', abbr: 'RS'},
     {value: 'lowtom', abbr: 'MT'},
     {value: 'midtom', abbr: 'MT'},
     {value: 'hitom', abbr: 'HT'},
     {value: 'snaredrum', abbr: 'SD'},
     {value: 'bassdrum', abbr: 'BD'},
 ];
+
